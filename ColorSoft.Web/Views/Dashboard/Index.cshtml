@@ -11,15 +11,17 @@
 }
 @section scripts
 {
-    @Scripts.Render("~/scripts/knockout")
-    @Scripts.Render("~/scripts/sammy")
-    @Html.RenderColorSoftApplication();
+    @Scripts.Render("~/scripts/angular")
+}
+@section footerScripts
+{
+     @Html.RenderColorSoftApplication()
 }
 <div class="row">
     <div class="span2">
         @Html.Action(MVC.DashboardNavigation.Index())
     </div>
-    <div id="dashboard-content" class="span10">
-       
+    <div id="dashboard-content" class="span10" ng-app="colorsoft">
+       <div ng-view></div>
     </div>
 </div>

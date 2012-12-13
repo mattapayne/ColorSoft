@@ -11,7 +11,7 @@
         @Styles.Render("~/Css/bootstrap", "~/Css/application")
         @RenderSection("css", required: false)
         @Html.CommonJsSetup()
-        @Scripts.Render("~/scripts/jQuery", "~/scripts/jQueryValidate", "~/scripts/jQueryValidateUnobtrusive", "~/scripts/bootstrap", "~/scripts/underscore", "~/scripts/common")
+        @Scripts.Render("~/scripts/jQuery", "~/scripts/bootstrap", "~/scripts/underscore", "~/scripts/common")
         @RenderSection("scripts", required: false)
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
@@ -48,7 +48,7 @@
             {
                 @Html.RenderMessages()
             }
-            @RenderBody()
+           @RenderBody()
         </div>
         @if (Request.IsAuthenticated)
         {
@@ -58,5 +58,6 @@
         }
         <div id="dialog-container">
         </div>
+        @RenderSection("footerScripts", required: false)
     </body>
 </html>

@@ -10,17 +10,15 @@ namespace ColorSoft.Web.App_Start
     {
         public static void RegisterBundles()
         {
-            BundleTable.Bundles.Add(new ScriptBundle("~/scripts/knockout").
-                Include("~/scripts/lib/knockout-2.2.0.js"));
-
-            BundleTable.Bundles.Add(new ScriptBundle("~/scripts/sammy").
-                                        Include("~/scripts/lib/sammy-0.7.1.js", "~/scripts/lib/sammy.template.js"));
+            BundleTable.Bundles.Add(new ScriptBundle("~/scripts/angular").
+                Include("~/scripts/lib/angular.js", 
+                "~/scripts/lib/angular-resource.js"));
 
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/applications/colorsoft").
-                                        Include("~/Scripts/applications/colorsoft/colorsoft.js",
-                                                "~/Scripts/applications/colorsoft/dataaccess/database.js",
-                                                "~/Scripts/applications/colorsoft/models/*.js",
-                                                "~/Scripts/applications/colorsoft/view_models/*.js"));
+                                        Include("~/Scripts/applications/colorsoft/models/*.js",
+                                                "~/Scripts/applications/colorsoft/controllers/*.js",
+                                                "~/Scripts/applications/colorsoft/services/*.js",
+                                                "~/Scripts/applications/colorsoft/colorsoft.js"));
         }
     }
 }

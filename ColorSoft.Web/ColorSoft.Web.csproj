@@ -290,8 +290,8 @@
     <Content Include="Content\images\icons_2.png" />
     <Content Include="Content\images\splitpane_handle-ew.gif" />
     <Content Include="Content\images\splitpane_handle-sn.gif" />
-    <Content Include="Content\templates\messages\index.html" />
-    <Content Include="Content\templates\users\index.html" />
+    <Content Include="Templates\messages\index.html" />
+    <Content Include="Templates\users\index.html" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -354,14 +354,18 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\applications\colorsoft\colorsoft.js" />
-    <Content Include="Scripts\applications\colorsoft\dataaccess\database.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\messages_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\users_controller.js" />
     <Content Include="Scripts\applications\colorsoft\models\message.js" />
     <Content Include="Scripts\applications\colorsoft\models\product.js" />
     <Content Include="Scripts\applications\colorsoft\models\user.js" />
-    <Content Include="Scripts\applications\colorsoft\view_models\messages_view_model.js" />
-    <Content Include="Scripts\applications\colorsoft\view_models\users_view_model.js" />
+    <Content Include="Scripts\applications\colorsoft\services\services.js" />
     <Content Include="Scripts\common.js" />
     <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Scripts\lib\angular-resource.js" />
+    <Content Include="Scripts\lib\angular-resource.min.js" />
+    <Content Include="Scripts\lib\angular.js" />
+    <Content Include="Scripts\lib\angular.min.js" />
     <Content Include="Scripts\lib\bootstrap.js" />
     <Content Include="Scripts\lib\bootstrap.min.js" />
     <Content Include="Scripts\lib\jquery-1.8.2-vsdoc.js" />
@@ -369,19 +373,8 @@
     <Content Include="Scripts\lib\jquery-1.8.2.min.js" />
     <Content Include="Scripts\lib\jquery-ui-1.9.0.js" />
     <Content Include="Scripts\lib\jquery-ui-1.9.0.min.js" />
-    <Content Include="Scripts\lib\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\lib\jquery.validate.js" />
-    <Content Include="Scripts\lib\jquery.validate.min.js" />
-    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\lib\knockout-2.2.0.debug.js" />
-    <Content Include="Scripts\lib\knockout-2.2.0.js" />
-    <Content Include="Scripts\lib\sammy.template.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\underscore.min.js" />
-    <Content Include="Scripts\lib\sammy-0.7.1-vsdoc.js" />
-    <Content Include="Scripts\lib\sammy-0.7.1.js" />
-    <Content Include="Scripts\lib\sammy-0.7.1.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
