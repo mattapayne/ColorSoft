@@ -12,7 +12,8 @@ namespace ColorSoft.Web.App_Start
         {
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/angular").
                 Include("~/scripts/lib/angular.js", 
-                "~/scripts/lib/angular-resource.js"));
+                "~/scripts/lib/angular-resource.js",
+                "~/scripts/lib/angular-ui/angular-ui.js"));
 
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/applications/colorsoft").
                                         Include("~/Scripts/applications/colorsoft/models/*.js",

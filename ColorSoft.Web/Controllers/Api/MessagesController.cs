@@ -36,22 +36,18 @@ namespace ColorSoft.Web.Controllers.Api
         [HttpPost]
         public void Delete(MessageViewModel model)
         {
-            if(model.Id.HasValue)
+            if(model != null && model.Id.HasValue)
             {
-                _deleteMessageCommand.Execute(model.Id.Value);
-            }
-            else
-            {
-                throw new ArgumentNullException("model");
+                _deleteMessageCommand.Execute(model.Id.Value);   
             }
         }
 
         [HttpPost]
-        public void DeleteAll(MessageViewModel[] models)
+        public void DeleteAll(Guid[] ids)
         {
-            if(models != null)
+            if (ids != null && ids.Any())
             {
-               _deleteMessageCommand.Execute(models.Where(m => m.Id.HasValue).Select(m => m.Id.Value).ToArray());
+                _deleteMessageCommand.Execute(ids);
             }
         }
     }

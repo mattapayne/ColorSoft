@@ -278,6 +278,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\ColorSoftJavascriptBundleConfig.cs" />
     <Compile Include="App_Start\JsApplicationsBundleConfig.cs" />
+    <Content Include="Content\Css\angular-ui.css" />
+    <Content Include="Content\Css\angular-ui.min.css" />
     <Content Include="Content\Css\bootstrap-responsive.css" />
     <Content Include="Content\Css\bootstrap-responsive.min.css" />
     <Content Include="Content\Css\bootstrap.css" />
@@ -290,6 +292,10 @@
     <Content Include="Content\images\icons_2.png" />
     <Content Include="Content\images\splitpane_handle-ew.gif" />
     <Content Include="Content\images\splitpane_handle-sn.gif" />
+    <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.js" />
+    <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.min.js" />
+    <Content Include="Scripts\lib\angular-ui\angular-ui.js" />
+    <Content Include="Scripts\lib\angular-ui\angular-ui.min.js" />
     <Content Include="Templates\messages\index.html" />
     <Content Include="Templates\users\index.html" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

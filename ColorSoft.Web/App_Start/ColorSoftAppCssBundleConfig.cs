@@ -13,6 +13,7 @@ namespace ColorSoft.Web.App_Start
             BundleTable.Bundles.Add(new StyleBundle("~/Css/application").Include("~/Content/Css/application.css"));
             BundleTable.Bundles.Add(new StyleBundle("~/Css/dashboard").Include("~/Content/Css/dashboard.css"));
             BundleTable.Bundles.Add(new StyleBundle("~/Css/bootstrap").Include("~/Content/Css/bootstrap.css"));
+            BundleTable.Bundles.Add(new StyleBundle("~/Css/angular-ui").Include("~/Content/Css/angular-ui.css"));
         }
     }
 }

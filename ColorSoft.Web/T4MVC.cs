@@ -451,6 +451,19 @@ namespace Links {
             public static readonly string angular_resource_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/angular-resource.min.js") ? Url("angular-resource.min.js") : Url("angular-resource.js");
                           
             public static readonly string angular_resource_min_js = Url("angular-resource.min.js");
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class angular_ui {
+                private const string URLPATH = "~/Scripts/lib/angular-ui";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                public static readonly string angular_ui_ieshiv_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/angular-ui-ieshiv.min.js") ? Url("angular-ui-ieshiv.min.js") : Url("angular-ui-ieshiv.js");
+                              
+                public static readonly string angular_ui_ieshiv_min_js = Url("angular-ui-ieshiv.min.js");
+                public static readonly string angular_ui_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/angular-ui.min.js") ? Url("angular-ui.min.js") : Url("angular-ui.js");
+                              
+                public static readonly string angular_ui_min_js = Url("angular-ui.min.js");
+            }
+        
             public static readonly string angular_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/angular.min.js") ? Url("angular.min.js") : Url("angular.js");
                           
             public static readonly string angular_min_js = Url("angular.min.js");
@@ -482,6 +495,9 @@ namespace Links {
             private const string URLPATH = "~/Content/Css";
             public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
             public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+            public static readonly string angular_ui_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/angular-ui.min.css") ? Url("angular-ui.min.css") : Url("angular-ui.css");
+                 
+            public static readonly string angular_ui_min_css = Url("angular-ui.min.css");
             public static readonly string application_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/application.min.css") ? Url("application.min.css") : Url("application.css");
                  
             public static readonly string bootstrap_responsive_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/bootstrap-responsive.min.css") ? Url("bootstrap-responsive.min.css") : Url("bootstrap-responsive.css");

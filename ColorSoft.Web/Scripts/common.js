@@ -45,6 +45,17 @@ window.ColorSoft.Utilities = {
     }
 };
 
+Array.prototype.remove = function () {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
+
 $(function () {
     $("#" + window.ColorSoft.TopNavigation.SelectedMenuItem).addClass("active");
     $("#logout-link").click(function (e) {
