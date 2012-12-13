@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{04CCC95F-E244-4CE9-880E-0F30EE49676F}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ColorSoft.Web</RootNamespace>
+    <AssemblyName>ColorSoft.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.2.6.2.859\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi">
+      <HintPath>..\packages\Autofac.WebApi.2.6.2.859\lib\NET40\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.3.4.6.0\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC4.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Simple.Data">
+      <HintPath>..\packages\Simple.Data.Core.0.18.2.1\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.Ado">
+      <HintPath>..\packages\Simple.Data.Ado.0.18.2.1\lib\net40\Simple.Data.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.SqlServer">
+      <HintPath>..\packages\Simple.Data.SqlServer.0.18.2.1\lib\net40\Simple.Data.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5.2\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\ColorSoftAppCssBundleConfig.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\Messages\CreateMessageCommand.cs" />
+    <Compile Include="Commands\Messages\DeleteMessageCommand.cs" />
+    <Compile Include="Commands\Messages\ICreateMessageCommand.cs" />
+    <Compile Include="Commands\Messages\IDeleteMessageCommand.cs" />
+    <Compile Include="Commands\Users\CreateUserCommand.cs" />
+    <Compile Include="Commands\Users\DeleteUserCommand.cs" />
+    <Compile Include="Commands\Users\ICreateUserCommand.cs" />
+    <Compile Include="Commands\Users\IDeleteUserCommand.cs" />
+    <Compile Include="Commands\Users\IUpdateUserCommand.cs" />
+    <Compile Include="Commands\Users\UpdateUserCommand.cs" />
+    <Compile Include="Controllers\Api\AuthenticatedApiController.cs" />
+    <Compile Include="Controllers\Api\MessagesController.cs" />
+    <Compile Include="Data\IDatabaseProvider.cs" />
+    <Compile Include="Data\Models\DashboardNavigationSection.cs" />
+    <Compile Include="Data\Models\DashboardNavigationSectionItem.cs" />
+    <Compile Include="Data\Models\Message.cs" />
+    <Compile Include="Data\Models\Role.cs" />
+    <Compile Include="Data\Models\UserRole.cs" />
+    <Compile Include="Data\SimpleDbDatabaseProvider.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Extensions\AutoMapperExtensions.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardNavigation\DashboardNavigationSectionItemProfile.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardNavigation\DashboardNavigationSectionProfile.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\Message\MessageProfile.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Resolvers\DashboardNavigation\DashboardNavigationSectionItemViewModelResolver.cs" />
+    <Compile Include="Infrastructure\CustomAuthenticationModule.cs" />
+    <Compile Include="Data\Models\User.cs" />
+    <Compile Include="Infrastructure\Authentication\ColorSoftIdentity.cs" />
+    <Compile Include="Infrastructure\Authentication\ColorSoftPrincipal.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\Users\UserProfile.cs" />
+    <Compile Include="Infrastructure\Factory.cs" />
+    <Compile Include="Infrastructure\IContainerAccessProvider.cs" />
+    <Compile Include="Infrastructure\IFactory.cs" />
+    <Compile Include="Infrastructure\Modules\AutoMapperModule.cs" />
+    <Compile Include="Infrastructure\Modules\CommandsModule.cs" />
+    <Compile Include="Infrastructure\Modules\FactoryModule.cs" />
+    <Compile Include="Infrastructure\Modules\QueriesModule.cs" />
+    <Compile Include="Infrastructure\Modules\SimpleDataModule.cs" />
+    <Compile Include="Infrastructure\Modules\ServicesModule.cs" />
+    <Compile Include="Infrastructure\Bootstrapper.cs" />
+    <Compile Include="Controllers\Api\UsersController.cs" />
+    <Compile Include="Lib\MessageCollection.cs" />
+    <Compile Include="Lib\MessageType.cs" />
+    <Compile Include="Models\Api\Users\UserViewModel.cs" />
+    <Compile Include="AuthenticationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AbstractController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\DashboardNavigationController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="DashboardController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardNavigationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ControllerExtensions.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Authentication\LoginViewModel.cs" />
+    <Compile Include="Models\Contact\MessageViewModel.cs" />
+    <Compile Include="Models\DashboardNavigation\DashboardNavigationSectionItemViewModel.cs" />
+    <Compile Include="Models\DashboardNavigation\DashboardNavigationSectionViewModel.cs" />
+    <Compile Include="Models\DashboardNavigation\DashboardNavigationViewModel.cs" />
+    <Compile Include="Models\Home\LoginAttemptViewModel.cs" />
+    <Compile Include="Models\Registration\RegistrationViewModel.cs" />
+    <Compile Include="Models\Users\AddUserViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\DashboardNavigation\GetDashboardNavigationQuery.cs" />
+    <Compile Include="Queries\DashboardNavigation\IGetDashboardNavigationQuery.cs" />
+    <Compile Include="Queries\IQuery.cs" />
+    <Compile Include="Queries\Messages\GetMessagesQuery.cs" />
+    <Compile Include="Queries\Messages\IGetMessagesQuery.cs" />
+    <Compile Include="Queries\Users\GetAllNonDeletedUsersQuery.cs" />
+    <Compile Include="Queries\Users\GetUserByIdQuery.cs" />
+    <Compile Include="Queries\Users\GetUserByUsernameQuery.cs" />
+    <Compile Include="Queries\Users\IGetAllNonDeletedUsersQuery.cs" />
+    <Compile Include="Queries\Users\IGetUserByIdQuery.cs" />
+    <Compile Include="Queries\Users\IGetUserByUsernameQuery.cs" />
+    <Compile Include="RegistrationController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AuthenticationService.cs" />
+    <Compile Include="Services\AuthCookieService.cs" />
+    <Compile Include="Services\IApplicationService.cs" />
+    <Compile Include="Services\IAuthenticationService.cs" />
+    <Compile Include="Services\IAuthCookieService.cs" />
+    <Compile Include="Services\IPasswordService.cs" />
+    <Compile Include="Services\PasswordService.cs" />
+    <Compile Include="Services\Users\IUserService.cs" />
+    <Compile Include="Services\Users\UserService.cs" />
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.ModelUnbinder.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Validation\PropertyError.cs" />
+    <Compile Include="Validation\Validators\LoginViewModelValidator.cs" />
+    <Compile Include="Validation\Validators\MessageViewModelValidator.cs" />
+    <Compile Include="Validation\Validators\RegistrationViewModelValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App_Start\ColorSoftJavascriptBundleConfig.cs" />
+    <Compile Include="App_Start\JsApplicationsBundleConfig.cs" />
+    <Content Include="Content\Css\bootstrap-responsive.css" />
+    <Content Include="Content\Css\bootstrap-responsive.min.css" />
+    <Content Include="Content\Css\bootstrap.css" />
+    <Content Include="Content\Css\bootstrap.min.css" />
+    <Content Include="Content\Css\application.css" />
+    <Content Include="Content\Css\dashboard.css" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\icons_2.png" />
+    <Content Include="Content\images\splitpane_handle-ew.gif" />
+    <Content Include="Content\images\splitpane_handle-sn.gif" />
+    <Content Include="Content\templates\messages\index.html" />
+    <Content Include="Content\templates\users\index.html" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\applications\colorsoft\colorsoft.js" />
+    <Content Include="Scripts\applications\colorsoft\dataaccess\database.js" />
+    <Content Include="Scripts\applications\colorsoft\models\message.js" />
+    <Content Include="Scripts\applications\colorsoft\models\product.js" />
+    <Content Include="Scripts\applications\colorsoft\models\user.js" />
+    <Content Include="Scripts\applications\colorsoft\view_models\messages_view_model.js" />
+    <Content Include="Scripts\applications\colorsoft\view_models\users_view_model.js" />
+    <Content Include="Scripts\common.js" />
+    <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap.min.js" />
+    <Content Include="Scripts\lib\jquery-1.8.2-vsdoc.js" />
+    <Content Include="Scripts\lib\jquery-1.8.2.js" />
+    <Content Include="Scripts\lib\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\lib\jquery-ui-1.9.0.js" />
+    <Content Include="Scripts\lib\jquery-ui-1.9.0.min.js" />
+    <Content Include="Scripts\lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\lib\jquery.validate.js" />
+    <Content Include="Scripts\lib\jquery.validate.min.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lib\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\lib\knockout-2.2.0.js" />
+    <Content Include="Scripts\lib\sammy.template.js" />
+    <Content Include="Scripts\lib\underscore.js" />
+    <Content Include="Scripts\lib\underscore.min.js" />
+    <Content Include="Scripts\lib\sammy-0.7.1-vsdoc.js" />
+    <Content Include="Scripts\lib\sammy-0.7.1.js" />
+    <Content Include="Scripts\lib\sammy-0.7.1.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\Shared\_Logout.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\DashboardNavigation\_Index.cshtml" />
+    <Content Include="Views\Registration\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Contact\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\About\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt.hooks.t4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>63127</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:63127/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

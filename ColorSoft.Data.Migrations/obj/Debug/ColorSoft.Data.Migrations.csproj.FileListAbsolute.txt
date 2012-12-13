@@ -1,0 +1,16 @@
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\ColorSoft.Data.Migrations.dll
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\ColorSoft.Data.Migrations.pdb
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\FluentMigrator.dll
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\FluentMigrator.pdb
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\FluentMigrator.xml
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\obj\Debug\ColorSoft.Data.Migrations.dll
+C:\Users\Matt\Documents\Visual Studio 2010\Projects\ColorSoft.Backbone\ColorSoft.Data.Migrations\obj\Debug\ColorSoft.Data.Migrations.pdb
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\ColorSoft.Data.Migrations.dll
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\ColorSoft.Data.Migrations.pdb
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\FluentMigrator.dll
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\FluentMigrator.pdb
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\bin\Debug\FluentMigrator.xml
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\obj\Debug\ResolveAssemblyReference.cache
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\obj\Debug\ColorSoft.Data.Migrations.dll
+D:\Code\ColorSoft.Backbone\ColorSoft.Data.Migrations\obj\Debug\ColorSoft.Data.Migrations.pdb

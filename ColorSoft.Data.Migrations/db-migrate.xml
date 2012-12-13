@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <environment name="development" connectionString="Data Source=localhost;Initial Catalog=ColorSoft_Development;Persist Security Info=True;User ID=ColorSoftUser;Password=2324;"></environment>
+  <environment name="stage" connectionString="Data Source=localhost;Initial Catalog=ColorSoft_Stage;Persist Security Info=True;User ID=ColorSoftUser;Password=2324;"></environment>
+  <environment name="production" connectionString="Data Source=localhost;Initial Catalog=ColorSoft_Production;Persist Security Info=True;User ID=ColorSoftUser;Password=2324;"></environment>
+</config>

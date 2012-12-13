@@ -1,0 +1,25 @@
+﻿@using System.Web.Optimization
+@using ColorSoft.Web.Extensions
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.SelectedNavigationItem = "dashboard";
+}
+@section css
+{
+    @Styles.Render("~/Css/dashboard")
+}
+@section scripts
+{
+    @Scripts.Render("~/scripts/knockout")
+    @Scripts.Render("~/scripts/sammy")
+    @Html.RenderColorSoftApplication();
+}
+<div class="row">
+    <div class="span2">
+        @Html.Action(MVC.DashboardNavigation.Index())
+    </div>
+    <div id="dashboard-content" class="span10">
+       
+    </div>
+</div>

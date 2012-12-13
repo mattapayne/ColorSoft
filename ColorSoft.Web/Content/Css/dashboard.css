@@ -1,0 +1,32 @@
+﻿#navigation-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navigation-menu .accordion-heading { background-color: #DCDCDC; }
+
+.tabular .row {
+    border-bottom: 1px solid #DCDCDC;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    vertical-align: middle;
+}
+
+.loading {
+    background: #ffffff url('../images/ajax-loader.gif') no-repeat left;
+    height: 100px;
+    width: 100%;
+}
+
+#dashboard-content > div.container {
+    border: 1px solid #DCDCDC;
+    min-height: 500px;
+    max-height: 800px;
+    overflow-x: auto;
+    padding: 5px;
+}
+
+.container h2 {
+    font-size: 20px;
+}

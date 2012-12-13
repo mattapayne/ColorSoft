@@ -1,0 +1,32 @@
+﻿body { padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */ }
+
+
+.field-error { border: 1px solid red !important; }
+
+.validation-error-indicator {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#login-container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#login-container label { font-weight: bold; }
+
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-errors {
+    color: red;    
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.field-validation-error {
+    color: red;
+}

@@ -1,0 +1,30 @@
+﻿@using ColorSoft.Web.Data.Models
+@model ColorSoft.Web.Models.DashboardNavigation.DashboardNavigationViewModel
+<div class="accordion affix-top" id="navigation-menu" data-spy="affix">
+    @foreach (var navigationSection in Model.Sections)
+    {
+        if (!navigationSection.IsAdminOnly || User.IsInRole(Role.ColorSoftAdministrator))
+        {
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="navigation-menu" href="#@navigationSection.Id.ToString()">
+                    @navigationSection.Name
+                </a>
+            </div>
+            <div class="accordion-body collapse" id="@navigationSection.Id.ToString()">
+                <div class="accordion-inner">
+                    <ul>
+                        @foreach (var menuItem in navigationSection.Items)
+                        {
+                            if (!menuItem.IsAdminOnly || User.IsInRole(Role.ColorSoftAdministrator))
+                            {
+                            <li><a href="@menuItem.Link" class="navigation-menu-item">@menuItem.Name</a></li>   
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        }
+    }
+</div>

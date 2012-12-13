@@ -1,0 +1,62 @@
+﻿@using System.Web.Optimization
+@using ColorSoft.Web.Extensions
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>@ViewBag.Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        @Styles.Render("~/Css/bootstrap", "~/Css/application")
+        @RenderSection("css", required: false)
+        @Html.CommonJsSetup()
+        @Scripts.Render("~/scripts/jQuery", "~/scripts/jQueryValidate", "~/scripts/jQueryValidateUnobtrusive", "~/scripts/bootstrap", "~/scripts/underscore", "~/scripts/common")
+        @RenderSection("scripts", required: false)
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="top-navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                                                                                                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                    </a><a class="brand" href="#">ColorSoft</a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li id="home">@Html.ActionLink("Home", MVC.Home.Index())</li>
+                            <li id="about">@Html.ActionLink("About", MVC.About.Index())</li>
+                            <li id="contact">@Html.ActionLink("Contact", MVC.Contact.Index())</li>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <li id="dashboard">@Html.ActionLink("Dashboard", MVC.Dashboard.Index())</li>
+                            }
+                        </ul>
+                        <ul id="auth" class="nav nav-collapse collapse pull-right">
+                            @{
+                                Html.RenderPartial(Request.IsAuthenticated ? MVC.Shared.Views._Logout : MVC.Shared.Views._Login);
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="content-container">
+            @if(Html.HasMessages())
+            {
+                @Html.RenderMessages()
+            }
+            @RenderBody()
+        </div>
+        @if (Request.IsAuthenticated)
+        {
+            using (Html.BeginForm(MVC.Authentication.Logout(), FormMethod.Post, new {id = "logout-form"}))
+            {
+            }
+        }
+        <div id="dialog-container">
+        </div>
+    </body>
+</html>

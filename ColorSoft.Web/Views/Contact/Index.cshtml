@@ -1,0 +1,36 @@
+﻿
+@using ColorSoft.Web.Extensions
+@model ColorSoft.Web.Models.Contact.MessageViewModel
+@{
+    ViewBag.Title = "Index";
+    ViewBag.SelectedNavigationItem = "contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>Contact Us!</h1>
+    @using (Html.BeginForm(MVC.Contact.Create(), FormMethod.Post))
+    {
+        @Html.ValidationSummary("There were some errors ...")
+
+        <div>
+            @Html.LabelFor(m => m.Email)
+            @Html.EditorFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email, "!")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Subject)
+            @Html.EditorFor(m => m.Subject)
+            @Html.ValidationMessageFor(m => m.Subject, "!")
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Message)
+            @Html.EditorFor(m => m.Message)
+            @Html.ValidationMessageFor(m => m.Message, "!")
+        </div>
+        <div>
+            <button type="submit" value="Send Message" class="btn btn-primary">Send Message
+            </button>
+        </div>   
+    }
+</div>
