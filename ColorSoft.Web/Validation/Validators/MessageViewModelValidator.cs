@@ -1,4 +1,4 @@
-﻿using ColorSoft.Web.Models.Contact;
+﻿using ColorSoft.Web.Models.Api.Messages;
 using FluentValidation;
 
 namespace ColorSoft.Web.Validation.Validators

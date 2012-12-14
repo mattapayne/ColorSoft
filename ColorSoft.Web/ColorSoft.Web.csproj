@@ -164,6 +164,7 @@
     <Compile Include="Commands\Users\IUpdateUserCommand.cs" />
     <Compile Include="Commands\Users\UpdateUserCommand.cs" />
     <Compile Include="Controllers\Api\AuthenticatedApiController.cs" />
+    <Compile Include="Controllers\Api\ContactController.cs" />
     <Compile Include="Controllers\Api\MessagesController.cs" />
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\Models\DashboardNavigationSection.cs" />
@@ -195,16 +196,16 @@
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Lib\MessageCollection.cs" />
     <Compile Include="Lib\MessageType.cs" />
+    <Compile Include="MessagingController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Api\Users\UserViewModel.cs" />
     <Compile Include="AuthenticationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContactController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AbstractController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\MessagingController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
@@ -225,7 +226,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Authentication\LoginViewModel.cs" />
-    <Compile Include="Models\Contact\MessageViewModel.cs" />
+    <Compile Include="Models\Api\Messages\MessageViewModel.cs" />
     <Compile Include="Models\DashboardNavigation\DashboardNavigationSectionItemViewModel.cs" />
     <Compile Include="Models\DashboardNavigation\DashboardNavigationSectionViewModel.cs" />
     <Compile Include="Models\DashboardNavigation\DashboardNavigationViewModel.cs" />
@@ -292,11 +293,15 @@
     <Content Include="Content\images\icons_2.png" />
     <Content Include="Content\images\splitpane_handle-ew.gif" />
     <Content Include="Content\images\splitpane_handle-sn.gif" />
+    <Content Include="Scripts\applications\messaging\controllers\messages_controller.js" />
+    <Content Include="Scripts\applications\messaging\messaging.js" />
+    <Content Include="Scripts\applications\messaging\services\services.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.min.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui.min.js" />
     <Content Include="Templates\messages\index.html" />
+    <Content Include="Templates\messages\new.html" />
     <Content Include="Templates\users\index.html" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -362,9 +367,6 @@
     <Content Include="Scripts\applications\colorsoft\colorsoft.js" />
     <Content Include="Scripts\applications\colorsoft\controllers\messages_controller.js" />
     <Content Include="Scripts\applications\colorsoft\controllers\users_controller.js" />
-    <Content Include="Scripts\applications\colorsoft\models\message.js" />
-    <Content Include="Scripts\applications\colorsoft\models\product.js" />
-    <Content Include="Scripts\applications\colorsoft\models\user.js" />
     <Content Include="Scripts\applications\colorsoft\services\services.js" />
     <Content Include="Scripts\common.js" />
     <None Include="T4MVC.tt.settings.xml" />
@@ -410,7 +412,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Messaging\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\About\Index.cshtml" />

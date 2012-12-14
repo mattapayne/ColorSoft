@@ -1,0 +1,29 @@
+﻿<form name="form" novalidate>
+    <fieldset>
+        <legend>Contact Us!</legend>
+        <div class="control-group">
+            <label class="control-label" for="Email">Email</label>
+            <div class="controls">
+                <input type="text" ng-model="message.Email" required placeholder="Your email address" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Subject">Subject</label>
+            <div class="controls">
+                <input type="text" ng-model="message.Subject" required placeholder="Type your subject here"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Message">Message</label>
+            <div class="controls">
+                <textarea ng-model="message.Message" rows="10" cols="50" required placeholder="Type your message here" class="span12"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="button" class="btn btn-primary" ng-click="submit(message)" ng-disabled="disableFormSubmit(message)">Send!</button>
+                <button type="button" class="btn" ng-click="reset()" ng-disabled="isUnchanged(message)">Reset</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

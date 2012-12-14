@@ -25,10 +25,10 @@ using T4MVC;
 public static class MVC {
     public static ColorSoft.Web.Controllers.AboutController About = new ColorSoft.Web.Controllers.T4MVC_AboutController();
     public static ColorSoft.Web.Controllers.AuthenticationController Authentication = new ColorSoft.Web.Controllers.T4MVC_AuthenticationController();
-    public static ColorSoft.Web.Controllers.ContactController Contact = new ColorSoft.Web.Controllers.T4MVC_ContactController();
     public static ColorSoft.Web.Controllers.DashboardController Dashboard = new ColorSoft.Web.Controllers.T4MVC_DashboardController();
     public static ColorSoft.Web.Controllers.DashboardNavigationController DashboardNavigation = new ColorSoft.Web.Controllers.T4MVC_DashboardNavigationController();
     public static ColorSoft.Web.Controllers.HomeController Home = new ColorSoft.Web.Controllers.T4MVC_HomeController();
+    public static ColorSoft.Web.Controllers.MessagingController Messaging = new ColorSoft.Web.Controllers.T4MVC_MessagingController();
     public static ColorSoft.Web.Controllers.RegistrationController Registration = new ColorSoft.Web.Controllers.T4MVC_RegistrationController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
@@ -416,21 +416,35 @@ namespace Links {
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-                public static class models {
-                    private const string URLPATH = "~/Scripts/applications/colorsoft/models";
+                public static class services {
+                    private const string URLPATH = "~/Scripts/applications/colorsoft/services";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-                    public static readonly string message_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/message.min.js") ? Url("message.min.js") : Url("message.js");
-                                  
-                    public static readonly string product_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/product.min.js") ? Url("product.min.js") : Url("product.js");
-                                  
-                    public static readonly string user_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/user.min.js") ? Url("user.min.js") : Url("user.js");
+                    public static readonly string services_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/services.min.js") ? Url("services.min.js") : Url("services.js");
                                   
                 }
             
+            }
+        
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public static class messaging {
+                private const string URLPATH = "~/Scripts/applications/messaging";
+                public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class controllers {
+                    private const string URLPATH = "~/Scripts/applications/messaging/controllers";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string messages_controller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/messages_controller.min.js") ? Url("messages_controller.min.js") : Url("messages_controller.js");
+                                  
+                }
+            
+                public static readonly string messaging_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/messaging.min.js") ? Url("messaging.min.js") : Url("messaging.js");
+                              
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class services {
-                    private const string URLPATH = "~/Scripts/applications/colorsoft/services";
+                    private const string URLPATH = "~/Scripts/applications/messaging/services";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
                     public static readonly string services_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/services.min.js") ? Url("services.min.js") : Url("services.js");

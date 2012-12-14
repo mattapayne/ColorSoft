@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ColorSoft.Web.Infrastructure.AutoMapper.Extensions;
-using ColorSoft.Web.Models.Contact;
+using ColorSoft.Web.Models.Api.Messages;
 
 namespace ColorSoft.Web.Infrastructure.AutoMapper.Profiles.Message
 {

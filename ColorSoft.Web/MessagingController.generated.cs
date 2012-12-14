@@ -21,9 +21,12 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace ColorSoft.Web.Controllers {
-    public partial class ContactController {
+    public partial class MessagingController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ContactController(Dummy d) { }
+        public MessagingController() { }
+
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        protected MessagingController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -37,20 +40,15 @@ namespace ColorSoft.Web.Controllers {
             return RedirectToRoutePermanent(callInfo.RouteValueDictionary);
         }
 
-        [NonAction]
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult Create() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.Create);
-        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ContactController Actions { get { return MVC.Contact; } }
+        public MessagingController Actions { get { return MVC.Messaging; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Contact";
+        public readonly string Name = "Messaging";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Contact";
+        public const string NameConst = "Messaging";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -58,23 +56,14 @@ namespace ColorSoft.Web.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Index = "Index";
-            public readonly string Create = "Create";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
-            public const string Create = "Create";
         }
 
 
-        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_Create {
-            public readonly string model = "model";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -85,22 +74,16 @@ namespace ColorSoft.Web.Controllers {
             public class _ViewNamesClass {
                 public readonly string Index = "Index";
             }
-            public readonly string Index = "~/Views/Contact/Index.cshtml";
+            public readonly string Index = "~/Views/Messaging/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_ContactController: ColorSoft.Web.Controllers.ContactController {
-        public T4MVC_ContactController() : base(Dummy.Instance) { }
+    public class T4MVC_MessagingController: ColorSoft.Web.Controllers.MessagingController {
+        public T4MVC_MessagingController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ActionResult Index() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult Create(ColorSoft.Web.Models.Contact.MessageViewModel model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Create);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 

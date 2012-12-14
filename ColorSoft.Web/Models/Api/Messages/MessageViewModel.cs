@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using ColorSoft.Web.Validation.Validators;
 using FluentValidation.Attributes;
 
-namespace ColorSoft.Web.Models.Contact
+namespace ColorSoft.Web.Models.Api.Messages
 {
     [Validator(typeof(MessageViewModelValidator))]
     public class MessageViewModel

@@ -4,7 +4,7 @@ using System.Web.Http;
 using AutoMapper;
 using ColorSoft.Web.Commands.Messages;
 using ColorSoft.Web.Data.Models;
-using ColorSoft.Web.Models.Contact;
+using ColorSoft.Web.Models.Api.Messages;
 using ColorSoft.Web.Queries.Messages;
 using System.Linq;
 
@@ -16,9 +16,9 @@ namespace ColorSoft.Web.Controllers.Api
         private readonly IGetMessagesQuery _getMessagesQuery;
         private readonly IDeleteMessageCommand _deleteMessageCommand;
 
-        public MessagesController(IMappingEngine mappingEngine, 
-            IGetMessagesQuery getMessagesQuery, 
-            IDeleteMessageCommand deleteMessageCommand) 
+        public MessagesController(IMappingEngine mappingEngine,
+                                  IGetMessagesQuery getMessagesQuery,
+                                  IDeleteMessageCommand deleteMessageCommand)
             : base(mappingEngine)
         {
             _getMessagesQuery = getMessagesQuery;
@@ -36,9 +36,9 @@ namespace ColorSoft.Web.Controllers.Api
         [HttpPost]
         public void Delete(MessageViewModel model)
         {
-            if(model != null && model.Id.HasValue)
+            if (model != null && model.Id.HasValue)
             {
-                _deleteMessageCommand.Execute(model.Id.Value);   
+                _deleteMessageCommand.Execute(model.Id.Value);
             }
         }
 

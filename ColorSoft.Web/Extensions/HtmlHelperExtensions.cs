@@ -149,6 +149,13 @@ namespace ColorSoft.Web.Extensions
                     Concat();
         }
 
+        public static IHtmlString RenderMessagingApplication(this HtmlHelper helper)
+        {
+            return
+                new[] { helper.RegisterMessagingApplicationUrls(), Scripts.Render("~/scripts/applications/messaging") }.
+                    Concat();
+        }
+
         public static IHtmlString CommonJsSetup(this HtmlHelper helper)
         {
             return MvcHtmlString.Create(@"
@@ -202,6 +209,16 @@ namespace ColorSoft.Web.Extensions
                     DeleteUser = url.Action("Delete", "Api/Users"),
                     DeleteUsers = url.Action("DeleteAll", "Apit/Users")
                 });
+        }
+
+        private static IHtmlString RegisterMessagingApplicationUrls(this HtmlHelper helper)
+        {
+            var url = helper.CreateUrlHelper();
+
+            return RegisterApplicationUrls("Messaging", new
+            {
+
+            });
         }
 
         private static string GetUrls(object urls)
