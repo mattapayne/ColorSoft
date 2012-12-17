@@ -416,6 +416,13 @@ namespace Links {
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+                public static class directives {
+                    private const string URLPATH = "~/Scripts/applications/colorsoft/directives";
+                    public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+                    public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                }
+            
+                [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
                 public static class services {
                     private const string URLPATH = "~/Scripts/applications/colorsoft/services";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }

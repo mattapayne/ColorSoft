@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using ColorSoft.Web.Infrastructure.Authentication;
-using ColorSoft.Web.Lib;
 
 namespace ColorSoft.Web.Controllers
 {
@@ -22,16 +21,6 @@ namespace ColorSoft.Web.Controllers
 
                 return null;
             }
-        }
-
-        protected void AddMessageBeforeRedirect(MessageType messageType, params string[] messages)
-        {
-            TempData.Add(MessageCollection.MessagesKey, new MessageCollection(messageType, messages));
-        }
-
-        protected void AddMessagesBeforeRender(MessageType messageType, params string[] messages)
-        {
-            ViewData.Add(MessageCollection.MessagesKey, new MessageCollection(messageType, messages));
         }
     }
 }

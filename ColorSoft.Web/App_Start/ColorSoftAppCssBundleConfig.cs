@@ -14,6 +14,7 @@ namespace ColorSoft.Web.App_Start
             BundleTable.Bundles.Add(new StyleBundle("~/Css/dashboard").Include("~/Content/Css/dashboard.css"));
             BundleTable.Bundles.Add(new StyleBundle("~/Css/bootstrap").Include("~/Content/Css/bootstrap.css"));
             BundleTable.Bundles.Add(new StyleBundle("~/Css/angular-ui").Include("~/Content/Css/angular-ui.css"));
+            BundleTable.Bundles.Add(new StyleBundle("~/Css/jquery-ui").Include("~/Content/Css/themes/base/jquery.ui.all.css"));
         }
     }
 }

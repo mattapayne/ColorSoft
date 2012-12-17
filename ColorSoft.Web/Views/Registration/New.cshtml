@@ -1,5 +1,4 @@
-﻿@using ColorSoft.Web.Extensions
-@model ColorSoft.Web.Models.Registration.RegistrationViewModel
+﻿@model ColorSoft.Web.Models.Registration.RegistrationViewModel
 @{
     ViewBag.Title = "New";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,8 +10,6 @@
 }
 @using (Html.BeginForm(MVC.Registration.New(), FormMethod.Post))
 {
-    @Html.BootstrapValidationSummary("There were some errors ...")
-
     <h2>
         Register</h2>
     <div class="row">

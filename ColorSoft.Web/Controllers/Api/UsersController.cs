@@ -28,13 +28,15 @@ namespace ColorSoft.Web.Controllers.Api
             return users.Select(u => MappingEngine.Map<User, UserViewModel>(u));
         }
 
-        public void Post(AddUserViewModel model)
+        [HttpPost]
+        public void Create(AddUserViewModel model)
         {
             var user = MappingEngine.Map<AddUserViewModel, User>(model);
             _userService.Create(user);
         }
 
-        public void Put(UserViewModel model)
+        [HttpPut]
+        public void Update(UserViewModel model)
         {
             if(model == null || !model.Id.HasValue)
             {
@@ -46,23 +48,18 @@ namespace ColorSoft.Web.Controllers.Api
             _userService.Update(user);
         }
 
-        [HttpPost]
-        public void Delete(UserViewModel model)
+        [HttpDelete]
+        public void Delete(Guid id)
         {
-            if (model == null || !model.Id.HasValue)
-            {
-                throw new ArgumentNullException("model");
-            }
-
-            _userService.Delete(model.Id.Value);
+            _userService.Delete(id);
         }
 
         [HttpPost]
-        public void DeleteAll(UserViewModel[] models)
+        public void DeleteAll(Guid[] ids)
         {
-            if (models != null)
+            if (ids != null)
             {
-                _userService.Delete(models.Where(m => m.Id.HasValue).Select(m => m.Id.Value).ToArray());
+                _userService.Delete(ids);
             }
         }
     }

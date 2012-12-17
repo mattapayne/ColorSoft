@@ -18,7 +18,8 @@ namespace ColorSoft.Web.App_Start
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/applications/colorsoft").
                                         Include("~/Scripts/applications/colorsoft/controllers/*.js",
                                                 "~/Scripts/applications/colorsoft/services/*.js",
-                                                "~/Scripts/applications/colorsoft/colorsoft.js"));
+                                                "~/Scripts/applications/colorsoft/colorsoft.js", 
+                                                "~/Scripts/applications/colorsoft/directives/*.js"));
 
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/applications/messaging").
                                         Include("~/Scripts/applications/messaging/controllers/*.js",

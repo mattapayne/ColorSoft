@@ -1,4 +1,4 @@
-﻿angular.module('colorsoft', ['colorsoftServices', 'ui.directives']).config(['$routeProvider', function ($routeProvider) {
+﻿angular.module('colorsoft', ['colorsoftServices', 'ui']).config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/', { }).
         when('/Users', { templateUrl: 'Templates/users/index.html', controller: ColorSoft.Controllers.UsersCtrl }).

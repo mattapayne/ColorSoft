@@ -401,6 +401,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\applications\colorsoft\directives\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

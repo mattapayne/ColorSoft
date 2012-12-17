@@ -8,10 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        @Styles.Render("~/Css/bootstrap", "~/Css/application")
+        @Styles.Render("~/Css/bootstrap", "~/Css/jquery-ui", "~/Css/application")
         @RenderSection("css", required: false)
         @Html.CommonJsSetup()
-        @Scripts.Render("~/scripts/jQuery", "~/scripts/bootstrap", "~/scripts/underscore", "~/scripts/common")
+        @Scripts.Render("~/scripts/jQuery", "~/scripts/jQueryUI", "~/scripts/bootstrap", "~/scripts/underscore", "~/scripts/common")
         @RenderSection("scripts", required: false)
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
@@ -44,10 +44,6 @@
             </div>
         </div>
         <div class="container" id="content-container">
-            @if(Html.HasMessages())
-            {
-                @Html.RenderMessages()
-            }
            @RenderBody()
         </div>
         @if (Request.IsAuthenticated)

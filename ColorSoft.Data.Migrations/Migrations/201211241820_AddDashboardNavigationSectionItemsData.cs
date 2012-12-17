@@ -46,25 +46,16 @@ namespace ColorSoft.Data.Migrations.Migrations
                                 inserts.Add(String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
                                                           section.Id,
                                                           "Search Matches", "#/ColorMatches/Search", 0));
-                                inserts.Add(String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
-                                                          section.Id,
-                                                          "Add Match", "#/ColorMatches/Add", 0));
                                 break;
                             case "Users":
                                 inserts.Add(String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
                                                           section.Id,
                                                           "List", "#/Users", 0));
-                                inserts.Add(String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
-                                                          section.Id,
-                                                          "Add", "#/Users/Add", 0));
                                 break;
                             case "Products":
                                 inserts.Add(String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
                                                           section.Id,
                                                           "List", "#/Products", 0));
-                                inserts.Add(String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
-                                                          section.Id,
-                                                          "Add", "#/Products/Add", 0));
                                 break;
                             case "Administration":
                                 inserts.Add(String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
