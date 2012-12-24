@@ -38,5 +38,10 @@
         userResource.prototype.setEditing = function (editing) {
             this.editing = editing;
         };
+
+        userResource.prototype.FullName = function () {
+            return this.FirstName + " " + this.LastName;
+        };
+
         return userResource;
     });

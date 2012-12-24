@@ -3,7 +3,7 @@
         <a href="#" class="brand">Users</a>
         <ul class="nav nav-pills">
             <li><a ng-click="showAddDialog()">Add User</a></li>
-            <li ng-show="anySelected()"><a ng-click="promptForDeleteAll()">Delete Selected</a></li>
+            <li ng-show="anySelected()"><a ng-click="showDeleteAllDialog()">Delete Selected</a></li>
         </ul>
     </div>
 </div>
@@ -11,29 +11,34 @@
     <thead>
         <tr>
             <th>
-                <input type="checkbox" ng-click="toggleAllSelected()" ng-checked="allSelected" />
+                <input type="checkbox" ng-click="toggleAllSelected()" ng-checked="allSelected()" />
             </th>
-            <th data-sort="FirstName">
-                <a href="#">First Name</a>
+            <th>
+                <a ng-click="sortValue='FirstName'">First Name</a>
             </th>
-            <th data-sort="LastName">
-                <a href="#">Last Name</a>
+            <th>
+                <a ng-click="sortValue='LastName'">Last Name</a>
             </th>
-            <th data-sort="UserName">
-                <a href="#">User Name</a>
+            <th>
+                <a ng-click="sortValue='UserName'">User Name</a>
             </th>
-            <th data-sort="EmailAddress">
-                <a href="#">Email Address</a>
+            <th>
+                <a ng-click="sortValue='EmailAddress'">Email Address</a>
             </th>
-            <th data-sort="CreatedAt">
-                <a href="#">Date Created</a>
+            <th>
+                <a ng-click="sortValue='CreatedAt'">Date Created</a>
             </th>
             <th>
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="user in users">
+        <tr ng-show="users.length == 0">
+            <td colspan="7">
+                There are currently no users
+            </td>
+        </tr>
+        <tr ng-repeat="user in users | orderBy:sortValue">
             <td>
                 <input type="checkbox" ng-checked="isSelected(user)" ng-click="updateSelection($event, user)" />
             </td>
@@ -61,14 +66,11 @@
             <td ui-if="user.inEditMode()">
                 <input type="text" class="input-small" ng-model="user.EmailAddress" />
             </td>
-            <td ui-if="user.inViewMode()">
+            <td>
                 {{ user.CreatedAt }}
             </td>
-            <td ui-if="user.inEditMode()">
-                <input class="input-small" ng-model="user.CreatedAt" ui-date ui-date-format="mm/dd/yy"/>
-            </td>
             <td ui-if="user.inViewMode()">
-                <a ng-click="editUser(user)">Edit</a>&nbsp; <a ng-click="promptForDelete(user)">Delete</a>
+                <a ng-click="editUser(user)">Edit</a>&nbsp; <a ng-click="showDeleteDialog(user)">Delete</a>
             </td>
             <td ui-if="user.inEditMode()">
                 <a ng-click="cancelEdit(user)">Cancel</a>&nbsp; <a ng-click="saveUser(user)">Save</a>
@@ -76,7 +78,7 @@
         </tr>
     </tbody>
 </table>
-<div ui-modal id="addDialog" class="fade" tabindex="-1" ng-model="addDialogVisible">
+<div ui-modal id="addDialog" class="fade addUser" tabindex="-1" ng-model="addDialogVisible" ng-controller="ColorSoft.Controllers.AddUserCtrl">
     <div class="modal-header">
         <button type="button" ng-click="closeAddDialog()" class="close" aria-hidden="true">
             &times;</button>
@@ -85,56 +87,59 @@
         </h3>
     </div>
     <div class="modal-body">
-        <div class="control-group">
-            <label for="FirstName" class="control-label">
-                First name:</label>
-            <div class="controls">
-                <input type="text" name="FirstName" id="FirstName" ng-model="newUser.FirstName" />
+        <form novalidate name="addUserForm" class="addUserForm">
+            <div class="alert alert-error" ng-show=""></div>
+            <div class="control-group">
+                <label for="FirstName" class="control-label">
+                    First name:</label>
+                <div class="controls">
+                    <input type="text" name="FirstName" id="FirstName" ng-model="newUser.FirstName" required />
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label for="LastName" class="control-label">
-                Last name:
-            </label>
-            <div class="controls">
-                <input type="text" name="LastName" id="LastName" ng-model="newUser.LastName" />
+            <div class="control-group">
+                <label for="LastName" class="control-label">
+                    Last name:
+                </label>
+                <div class="controls">
+                    <input type="text" name="LastName" id="LastName" ng-model="newUser.LastName" required />
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label for="UserName" class="control-label">
-                User name:</label>
-            <div class="controls">
-                <input type="text" name="UserName" id="UserName" ng-model="newUser.UserName" />
+            <div class="control-group">
+                <label for="UserName" class="control-label">
+                    User name:</label>
+                <div class="controls">
+                    <input type="text" name="UserName" id="UserName" ng-model="newUser.UserName" required must-be-unique />
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label for="EmailAddress" class="control-label">
-                Email Address:</label>
-            <div class="controls">
-                <input type="text" name="EmailAddress" id="EmailAddress" ng-model="newUser.EmailAddress" />
+            <div class="control-group">
+                <label for="EmailAddress" class="control-label">
+                    Email Address:</label>
+                <div class="controls">
+                    <input type="email" name="EmailAddress" id="EmailAddress" ng-model="newUser.EmailAddress" required />
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label for="Password" class="control-label">
-                Password:</label>
-            <div class="controls">
-                <input type="password" name="Password" id="Password" ng-model="newUser.Password" />
+            <div class="control-group">
+                <label for="Password" class="control-label">
+                    Password:</label>
+                <div class="controls">
+                    <input type="password" name="Password" id="Password" ng-model="newUser.Password" required />
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label for="PasswordConfirmation" class="control-label">
-                Password Confirmation:</label>
-            <div class="controls">
-                <input type="password" name="PasswordConfirmation" id="PasswordConfirmation" ng-model="newUser.PasswordConfirmation" />
+            <div class="control-group">
+                <label for="PasswordConfirmation" class="control-label">
+                    Password Confirmation:</label>
+                <div class="controls">
+                    <input type="password" name="PasswordConfirmation" id="PasswordConfirmation" ng-model="newUser.PasswordConfirmation" required must-match="newUser.Password" />
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <div class="modal-footer">
         <a ng-click="closeAddDialog()" class="btn">No</a> <a ng-click="createUser()" class="btn btn-primary">
             Yes</a>
     </div>
 </div>
-<div ui-modal id="deleteDialog" class="modal hide fade" tabindex="-1" ng-model="deleteDialogVisible">
+<div ui-modal id="deleteDialog" class="modal hide fade" tabindex="-1" ng-model="deleteDialogVisible" ng-controller="ColorSoft.Controllers.DeleteUserCtrl">
     <div class="modal-header">
         <button type="button" class="close" aria-hidden="true" ng-click="closeDeleteDialog()">
             &times;</button>
@@ -143,9 +148,10 @@
         </h3>
     </div>
     <div class="modal-body">
-        Are you sure you want to delete this user?
+        Are you sure you want to delete {{ selectedUserNames() }}?
     </div>
     <div class="modal-footer">
-        <a ng-click="closeDeleteDialog()" class="btn">No</a> <a ng-click="deleteUsers()" class="btn btn-primary">Yes</a>
+        <a ng-click="closeDeleteDialog()" class="btn">No</a> <a ng-click="deleteUsers()"
+            class="btn btn-primary">Yes</a>
     </div>
 </div>

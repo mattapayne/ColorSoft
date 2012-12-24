@@ -2,20 +2,29 @@
 
 ColorSoft.Controllers.MessagesCtrl = function ($scope, $routeParams, Message) {
     $scope.messages = Message.query();
-
-    $scope.deleteDialogVisible = false;
-    $scope.currentMessage = null;
-    $scope.allSelected = false;
     $scope.selectedMessages = [];
+    $scope.sortValue = 'CreatedAt';
+
+    $scope.$on("messages:deleted", function (event, args) {
+        _.each(args.messages, function (message) {
+            $scope.messages.remove(message);
+        });
+    });
 
     $scope.anySelected = function () {
         return $scope.selectedMessages.length > 0;
     };
 
+    $scope.allSelected = function () {
+        return ($scope.messages.length > 0) &&
+            ($scope.messages.length == $scope.selectedMessages.length);
+    };
+
     $scope.toggleAllSelected = function () {
-        $scope.allSelected = !$scope.allSelected;
-        $scope.selectedMessages = [];
-        if ($scope.allSelected) {
+        var all = $scope.allSelected();
+        if (all) {
+            $scope.selectedMessages = [];
+        } else {
             _.each($scope.messages, function (message) {
                 $scope.selectedMessages.push(message);
             });
@@ -27,7 +36,6 @@ ColorSoft.Controllers.MessagesCtrl = function ($scope, $routeParams, Message) {
         if (checkbox.checked) {
             $scope.selectedMessages.push(message);
         } else {
-            $scope.allSelected = false;
             $scope.selectedMessages.remove(message);
         }
     };
@@ -37,34 +45,11 @@ ColorSoft.Controllers.MessagesCtrl = function ($scope, $routeParams, Message) {
     };
 
     $scope.showDeleteDialog = function (message) {
-        $scope.deleteDialogVisible = true;
-        $scope.currentMessage = message;
+        $scope.$broadcast("messages:show-delete-dialog", { messages: [message] });
     };
 
-    $scope.closeDeleteDialog = function () {
-        $scope.deleteDialogVisible = false;
-        $scope.currentMessage = null;
-    };
-
-    $scope.deleteCurrentMessage = function () {
-        if ($scope.currentMessage != null) {
-            var message = $scope.currentMessage;
-            $scope.currentMessage.$remove({}, (function () {
-                $scope.messages.remove(message);
-            }));
-        }
-        $scope.closeDeleteDialog();
-    };
-
-    $scope.deleteAllSelected = function () {
-        if ($scope.selectedMessages.length > 0) {
-            var ids = _.pluck($scope.selectedMessages, "Id");
-            Message.removeAll(ids).success(function () {
-                _.each($scope.selectedMessages, function (message) {
-                    $scope.messages.remove(message);
-                });
-                $scope.selectedMessages = [];
-            });
-        }
+    $scope.showDeleteAllDialog = function () {
+        var messages = $scope.selectedMessages;
+        $scope.$broadcast("messages:show-delete-dialog", { messages: messages });
     };
 }

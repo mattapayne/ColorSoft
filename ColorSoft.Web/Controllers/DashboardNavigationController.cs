@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using ColorSoft.Web.Data.Models;
@@ -26,9 +25,12 @@ namespace ColorSoft.Web.Controllers
             var sections = _getDashboardNavigationQuery.Execute();
 
             var modelSections =
-                sections.Select(
-                    section =>
-                    _mappingEngine.Map<DashboardNavigationSection, DashboardNavigationSectionViewModel>(section));
+                sections.
+                    OrderBy(x => x.SortOrder).
+                    Select(
+                        section =>
+                        _mappingEngine.Map<DashboardNavigationSection, DashboardNavigationSectionViewModel>(section)).
+                    ToList();
 
             var model = new DashboardNavigationViewModel { Sections = modelSections };
             return PartialView(MVC.DashboardNavigation.Views._Index, model);

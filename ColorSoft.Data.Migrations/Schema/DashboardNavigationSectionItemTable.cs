@@ -6,7 +6,7 @@
         public const string ForeignKeyName = "FK_DashboardNavigationSection_DashboardNavigationSectionItem";
 
         public const string InsertTemplateSql =
-            "INSERT INTO DashboardNavigationSectionItems (DashboardNavigationSectionId, Name, Link, IsAdminOnly) VALUES ('{0}', '{1}', '{2}', {3})";
+            "INSERT INTO DashboardNavigationSectionItems (Id, DashboardNavigationSectionId, [Name], Link, Title, SortOrder) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', {5})";
 
         public static class Columns
         {
@@ -14,8 +14,9 @@
             public const string DashboardNavigationSectionId = "DashboardNavigationSectionId";
             public const string Name = "Name";
             public const string Link = "Link";
+            public const string Title = "Title";
             public const string IsActive = "IsActive";
-            public const string IsAdminOnly = "IsAdminOnly";
+            public const string SortOrder = "SortOrder";
         }
     }
 }

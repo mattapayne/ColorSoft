@@ -169,10 +169,13 @@
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\Models\DashboardNavigationSection.cs" />
     <Compile Include="Data\Models\DashboardNavigationSectionItem.cs" />
+    <Compile Include="Data\Models\DashboardNavigationSectionItemRole.cs" />
+    <Compile Include="Data\Models\DashboardNavigationSectionRole.cs" />
     <Compile Include="Data\Models\Message.cs" />
     <Compile Include="Data\Models\Role.cs" />
     <Compile Include="Data\Models\UserRole.cs" />
     <Compile Include="Data\SimpleDbDatabaseProvider.cs" />
+    <Compile Include="Infrastructure\Authentication\IApplicationUser.cs" />
     <Compile Include="Infrastructure\AutoMapper\Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardNavigation\DashboardNavigationSectionItemProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardNavigation\DashboardNavigationSectionProfile.cs" />
@@ -189,6 +192,7 @@
     <Compile Include="Infrastructure\Modules\AutoMapperModule.cs" />
     <Compile Include="Infrastructure\Modules\CommandsModule.cs" />
     <Compile Include="Infrastructure\Modules\FactoryModule.cs" />
+    <Compile Include="Infrastructure\Modules\IdentityModule.cs" />
     <Compile Include="Infrastructure\Modules\QueriesModule.cs" />
     <Compile Include="Infrastructure\Modules\SimpleDataModule.cs" />
     <Compile Include="Infrastructure\Modules\ServicesModule.cs" />
@@ -235,10 +239,16 @@
     <Compile Include="Models\Users\AddUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\DashboardNavigation\GetDashboardNavigationQuery.cs" />
+    <Compile Include="Queries\DashboardNavigation\GetDashboardNavigationSectionItemRolesQuery.cs" />
+    <Compile Include="Queries\DashboardNavigation\GetDashboardNavigationSectionRolesQuery.cs" />
     <Compile Include="Queries\DashboardNavigation\IGetDashboardNavigationQuery.cs" />
+    <Compile Include="Queries\DashboardNavigation\IGetDashboardNavigationSectionItemRolesQuery.cs" />
+    <Compile Include="Queries\DashboardNavigation\IGetDashboardNavigationSectionRolesQuery.cs" />
     <Compile Include="Queries\IQuery.cs" />
     <Compile Include="Queries\Messages\GetMessagesQuery.cs" />
     <Compile Include="Queries\Messages\IGetMessagesQuery.cs" />
+    <Compile Include="Queries\Roles\GetRolesQuery.cs" />
+    <Compile Include="Queries\Roles\IGetRolesQuery.cs" />
     <Compile Include="Queries\Users\GetAllNonDeletedUsersQuery.cs" />
     <Compile Include="Queries\Users\GetUserByIdQuery.cs" />
     <Compile Include="Queries\Users\GetUserByUsernameQuery.cs" />
@@ -293,6 +303,10 @@
     <Content Include="Content\images\icons_2.png" />
     <Content Include="Content\images\splitpane_handle-ew.gif" />
     <Content Include="Content\images\splitpane_handle-sn.gif" />
+    <Content Include="Scripts\applications\colorsoft\controllers\add_user_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\delete_message_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\delete_user_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\directives\colorsoft_directives.js" />
     <Content Include="Scripts\applications\messaging\controllers\messages_controller.js" />
     <Content Include="Scripts\applications\messaging\messaging.js" />
     <Content Include="Scripts\applications\messaging\services\services.js" />
@@ -401,7 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\applications\colorsoft\directives\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

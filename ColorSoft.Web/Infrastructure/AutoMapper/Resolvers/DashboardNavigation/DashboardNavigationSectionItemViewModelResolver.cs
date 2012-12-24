@@ -18,9 +18,12 @@ namespace ColorSoft.Web.Infrastructure.AutoMapper.Resolvers.DashboardNavigation
         protected override IEnumerable<DashboardNavigationSectionItemViewModel> ResolveCore(DashboardNavigationSection source)
         {
             return
-                source.DashboardNavigationSectionItems.Select(
-                    item =>
-                    _mappingEngine.Map<DashboardNavigationSectionItem, DashboardNavigationSectionItemViewModel>(item));
+                source.DashboardNavigationSectionItems.
+                    Where(x => x.IsActive).
+                    OrderBy(x => x.SortOrder).
+                    Select(
+                        item =>
+                        _mappingEngine.Map<DashboardNavigationSectionItem, DashboardNavigationSectionItemViewModel>(item));
         }
     }
 }

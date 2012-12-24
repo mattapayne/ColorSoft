@@ -1,9 +1,10 @@
-﻿@using ColorSoft.Web.Data.Models
-@model ColorSoft.Web.Models.DashboardNavigation.DashboardNavigationViewModel
-<div class="accordion affix-top" id="navigation-menu" data-spy="affix">
+﻿@model ColorSoft.Web.Models.DashboardNavigation.DashboardNavigationViewModel
+<div class="accordion affix-top" id="navigation-menu">
     @foreach (var navigationSection in Model.Sections)
     {
-        if (!navigationSection.IsAdminOnly || User.IsInRole(Role.ColorSoftAdministrator))
+        var isUserAllowedAccessToSection = navigationSection.Roles.Any(x => User.IsInRole(x));
+
+        if (isUserAllowedAccessToSection)
         {
         <div class="accordion-group">
             <div class="accordion-heading">
@@ -16,9 +17,11 @@
                     <ul>
                         @foreach (var menuItem in navigationSection.Items)
                         {
-                            if (!menuItem.IsAdminOnly || User.IsInRole(Role.ColorSoftAdministrator))
+                            var isUserAllowedAccessToItem = menuItem.Roles.Any(x => User.IsInRole(x));
+
+                            if (isUserAllowedAccessToItem)
                             {
-                            <li><a href="@menuItem.Link" class="navigation-menu-item">@menuItem.Name</a></li>   
+                            <li><a href="@menuItem.Link" class="navigation-menu-item" title="@menuItem.Title">@menuItem.Name</a></li>   
                             }
                         }
                     </ul>

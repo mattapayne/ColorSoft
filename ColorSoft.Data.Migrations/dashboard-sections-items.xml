@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sections>
+  <section name="Color Matches" sort-order="1" allow-roles="ColorSoft Administrator,Organization Administrator,Organization User">
+    <items>
+      <item name="Search Matches" sort-order="1" title="Search for color matches" link="#/ColorMatches/Search" allow-roles="ColorSoft Administrator,Organization Administrator,Organization User" active="true"></item>
+    </items>
+  </section>
+  <section name="Users" sort-order="3" allow-roles="ColorSoft Administrator,Organization Administrator">
+    <items>
+      <item name="List" sort-order="1" title="List all users" link="#/Users" allow-roles="ColorSoft Administrator,Organization Administrator" active="true"></item>
+    </items>
+  </section>
+  <section name="Products" sort-order="2" allow-roles="ColorSoft Administrator,Organization Administrator,Organization User">
+    <items>
+      <item name="List" sort-order="1" title="List all products" link="#/Products" allow-roles="ColorSoft Administrator,Organization Administrator,Organization User" active="true"></item>
+    </items>
+  </section>
+  <section name="ColorSoft Administration" sort-order="4" allow-roles="ColorSoft Administrator">
+    <items>
+      <item name="Organizations" sort-order="1" title="List all organizations" link="#/Organizations" allow-roles="ColorSoft Administrator" active="true"></item>
+      <item name="Messages" sort-order="2" title="List all messages" link="#/Messages" allow-roles="ColorSoft Administrator" active="true"></item>
+    </items>
+  </section>
+</sections>

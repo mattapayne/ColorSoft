@@ -409,6 +409,12 @@ namespace Links {
                     private const string URLPATH = "~/Scripts/applications/colorsoft/controllers";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string add_user_controller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/add_user_controller.min.js") ? Url("add_user_controller.min.js") : Url("add_user_controller.js");
+                                  
+                    public static readonly string delete_message_controller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/delete_message_controller.min.js") ? Url("delete_message_controller.min.js") : Url("delete_message_controller.js");
+                                  
+                    public static readonly string delete_user_controller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/delete_user_controller.min.js") ? Url("delete_user_controller.min.js") : Url("delete_user_controller.js");
+                                  
                     public static readonly string messages_controller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/messages_controller.min.js") ? Url("messages_controller.min.js") : Url("messages_controller.js");
                                   
                     public static readonly string users_controller_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/users_controller.min.js") ? Url("users_controller.min.js") : Url("users_controller.js");
@@ -420,6 +426,8 @@ namespace Links {
                     private const string URLPATH = "~/Scripts/applications/colorsoft/directives";
                     public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
                     public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+                    public static readonly string colorsoft_directives_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/colorsoft_directives.min.js") ? Url("colorsoft_directives.min.js") : Url("colorsoft_directives.js");
+                                  
                 }
             
                 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

@@ -8,7 +8,13 @@ namespace ColorSoft.Web.Models.DashboardNavigation
         public Guid Id { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public bool IsAdminOnly { get; set; }
         public IEnumerable<DashboardNavigationSectionItemViewModel> Items { get; set; }
+        public IEnumerable<string> Roles { get; set; }
+
+        public DashboardNavigationSectionViewModel()
+        {
+            Items = new List<DashboardNavigationSectionItemViewModel>();
+            Roles = new List<string>();
+        }
     }
 }

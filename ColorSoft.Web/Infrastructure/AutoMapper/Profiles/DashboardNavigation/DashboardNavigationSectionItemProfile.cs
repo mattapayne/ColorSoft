@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using ColorSoft.Web.Data.Models;
 using ColorSoft.Web.Models.DashboardNavigation;
 
@@ -8,7 +9,8 @@ namespace ColorSoft.Web.Infrastructure.AutoMapper.Profiles.DashboardNavigation
     {
         protected override void Configure()
         {
-            CreateMap<DashboardNavigationSectionItem, DashboardNavigationSectionItemViewModel>();
+            CreateMap<DashboardNavigationSectionItem, DashboardNavigationSectionItemViewModel>().
+                ForMember(dest => dest.Roles, opt => opt.MapFrom(s => s.Roles.Select(r => r.Name)));
         }
     }
 }

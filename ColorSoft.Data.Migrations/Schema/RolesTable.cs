@@ -3,6 +3,7 @@
     public static class RolesTable
     {
         public const string Name = "Roles";
+        public const string SelectAllSql = "SELECT Id, [Name] FROM Roles";
 
         public static class Columns
         {

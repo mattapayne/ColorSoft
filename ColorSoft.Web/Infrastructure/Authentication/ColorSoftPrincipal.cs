@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Principal;
 
 namespace ColorSoft.Web.Infrastructure.Authentication
 {
-    public class ColorSoftPrincipal : IPrincipal
+    public class ColorSoftPrincipal : IApplicationUser
     {
         private readonly ColorSoftIdentity _identity;
 
@@ -25,5 +26,10 @@ namespace ColorSoft.Web.Infrastructure.Authentication
         }
 
         #endregion
+
+        public Guid? Id
+        {
+            get { return _identity.Id; }
+        }
     }
 }

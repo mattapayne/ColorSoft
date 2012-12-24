@@ -1,4 +1,5 @@
-﻿using ColorSoft.Data.Migrations.Schema;
+﻿using System;
+using ColorSoft.Data.Migrations.Schema;
 using FluentMigrator;
 
 namespace ColorSoft.Data.Migrations.Migrations
@@ -33,6 +34,71 @@ namespace ColorSoft.Data.Migrations.Migrations
             Create.Table(UsersRolesTable.Name).InSchema(AppSchema.Name).
                 WithColumn(UsersRolesTable.Columns.UserId).AsGuid().NotNullable().
                 WithColumn(UsersRolesTable.Columns.RoleId).AsGuid().NotNullable();
+
+            Create.Table(MessagesTable.Name).InSchema(AppSchema.Name).
+                WithColumn(MessagesTable.Columns.Id).AsGuid().PrimaryKey().WithDefaultValue(SystemMethods.NewGuid).
+                WithColumn(MessagesTable.Columns.Subject).AsString(100).NotNullable().
+                WithColumn(MessagesTable.Columns.MessageText).AsString(Int32.MaxValue).
+                WithColumn(MessagesTable.Columns.From).AsString(100).NotNullable().WithColumn(
+                    MessagesTable.Columns.CreatedAt).AsDateTime().NotNullable().WithDefaultValue(
+                        SystemMethods.CurrentUTCDateTime);
+
+            Create.Table(DashBoardNavigationSectionTable.Name).InSchema(AppSchema.Name).
+                WithColumn(DashBoardNavigationSectionTable.Columns.Id).AsGuid().PrimaryKey().NotNullable().
+                WithDefaultValue(SystemMethods.NewSequentialId).
+                WithColumn(DashBoardNavigationSectionTable.Columns.SortOrder).AsInt32().NotNullable().
+                WithColumn(DashBoardNavigationSectionTable.Columns.Name).AsString(255).NotNullable().
+                WithColumn(DashBoardNavigationSectionTable.Columns.IsActive).AsBoolean().NotNullable().WithDefaultValue(
+                    true);
+
+            Create.Table(DashboardNavigationSectionItemTable.Name).InSchema(AppSchema.Name).
+                WithColumn(DashboardNavigationSectionItemTable.Columns.Id).AsGuid().PrimaryKey().NotNullable().
+                WithDefaultValue(SystemMethods.NewSequentialId).
+                WithColumn(DashboardNavigationSectionItemTable.Columns.DashboardNavigationSectionId).AsGuid().
+                NotNullable().
+                WithColumn(DashboardNavigationSectionItemTable.Columns.SortOrder).AsInt32().NotNullable().
+                WithColumn(DashboardNavigationSectionItemTable.Columns.Name).AsString(255).NotNullable().
+                WithColumn(DashboardNavigationSectionItemTable.Columns.Link).AsString(Int32.MaxValue).NotNullable().
+                WithColumn(DashboardNavigationSectionItemTable.Columns.IsActive).AsBoolean().NotNullable().
+                WithDefaultValue(true).
+                WithColumn(DashboardNavigationSectionItemTable.Columns.Title).AsString(255).Nullable();
+
+            Create.Table(DashboardNavigationSectionsRolesTable.Name).InSchema(AppSchema.Name).WithColumn(
+                DashboardNavigationSectionsRolesTable.Columns.RoleId).AsGuid().NotNullable().WithColumn(
+                    DashboardNavigationSectionsRolesTable.Columns.DashboardNavigationSectionId).AsGuid().NotNullable();
+
+            Create.Table(DashboardNavigationSectionItemsRolesTable.Name).InSchema(AppSchema.Name).WithColumn(
+                DashboardNavigationSectionItemsRolesTable.Columns.RoleId).AsGuid().NotNullable().WithColumn(
+                    DashboardNavigationSectionItemsRolesTable.Columns.DashboardNavigationSectionItemId).AsGuid().
+                NotNullable();
+
+            Create.ForeignKey(DashboardNavigationSectionItemsRolesTable.RoleFk).FromTable(
+                DashboardNavigationSectionItemsRolesTable.Name).ForeignColumn(
+                    DashboardNavigationSectionItemsRolesTable.Columns.RoleId).ToTable(RolesTable.Name).PrimaryColumn(
+                        RolesTable.Columns.Id);
+
+            Create.ForeignKey(DashboardNavigationSectionItemsRolesTable.DashboardNavigationSectionItemFk).FromTable(
+                DashboardNavigationSectionItemsRolesTable.Name).ForeignColumn(
+                    DashboardNavigationSectionItemsRolesTable.Columns.DashboardNavigationSectionItemId).ToTable(
+                        DashboardNavigationSectionItemTable.Name).PrimaryColumn(
+                            DashboardNavigationSectionItemTable.Columns.Id);
+
+            Create.ForeignKey(DashboardNavigationSectionsRolesTable.RoleFk).FromTable(
+                DashboardNavigationSectionsRolesTable.Name).ForeignColumn(
+                    DashboardNavigationSectionsRolesTable.Columns.RoleId).ToTable(RolesTable.Name).PrimaryColumn(
+                        RolesTable.Columns.Id);
+
+            Create.ForeignKey(DashboardNavigationSectionsRolesTable.DashboardNavigationSectionFk).FromTable(
+                DashboardNavigationSectionsRolesTable.Name).ForeignColumn(
+                    DashboardNavigationSectionsRolesTable.Columns.DashboardNavigationSectionId).ToTable(
+                        DashBoardNavigationSectionTable.Name).PrimaryColumn(
+                            DashBoardNavigationSectionTable.Columns.Id);
+
+            Create.ForeignKey(DashboardNavigationSectionItemTable.ForeignKeyName).FromTable(
+                DashboardNavigationSectionItemTable.Name).InSchema(AppSchema.Name).ForeignColumn(
+                    DashboardNavigationSectionItemTable.Columns.DashboardNavigationSectionId).ToTable(
+                        DashBoardNavigationSectionTable.Name).InSchema(AppSchema.Name).PrimaryColumn(
+                            DashBoardNavigationSectionTable.Columns.Id);
 
             Create.ForeignKey(UserTable.OrganizationForeignKeyName).FromTable(UserTable.Name).ForeignColumn(
                 UserTable.Columns.OrganizationId).ToTable(OrganizationTable.Name).InSchema(AppSchema.Name).PrimaryColumn
@@ -77,9 +143,14 @@ namespace ColorSoft.Data.Migrations.Migrations
         public override void Down()
         {
             Delete.Table(UsersRolesTable.Name).InSchema(AppSchema.Name);
+            Delete.Table(DashboardNavigationSectionsRolesTable.Name).InSchema(AppSchema.Name);
+            Delete.Table(DashboardNavigationSectionItemsRolesTable.Name).InSchema(AppSchema.Name);
             Delete.Table(RolesTable.Name).InSchema(AppSchema.Name);
             Delete.Table(UserTable.Name).InSchema(AppSchema.Name);
             Delete.Table(OrganizationTable.Name).InSchema(AppSchema.Name);
+            Delete.Table(MessagesTable.Name).InSchema(AppSchema.Name);
+            Delete.Table(DashboardNavigationSectionItemTable.Name).InSchema(AppSchema.Name);
+            Delete.Table(DashBoardNavigationSectionTable.Name).InSchema(AppSchema.Name);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿Messaging.Controllers = Messaging.Controllers || {};
+﻿window.Messaging = window.Messaging || {};
+
+Messaging.Controllers = Messaging.Controllers || {};
 
 Messaging.Controllers.MessagesCtrl = function ($scope, Message) {
     $scope.master = {};

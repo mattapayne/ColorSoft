@@ -30,3 +30,19 @@
 .container h2 {
     font-size: 20px;
 }
+
+.addUser {
+    width: 400px;
+}
+
+.addUser .modal-body {
+    max-height: 500px;
+}
+
+.addUserForm input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+}
+   
+ .addUserForm input.ng-valid.ng-dirty {
+        background-color: #78FA89;
+}
