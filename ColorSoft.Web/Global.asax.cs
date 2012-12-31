@@ -1,7 +1,9 @@
-﻿using System.Web;
+﻿using System.Net;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using Autofac;
 using ColorSoft.Web.App_Start;
 using ColorSoft.Web.Infrastructure;
@@ -35,6 +37,19 @@ namespace ColorSoft.Web
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             FilterConfig.RegisterWebApiFilters(GlobalConfiguration.Configuration.Filters);
+        }
+
+        protected void Application_EndRequest()
+        {
+            var context = new HttpContextWrapper(Context);
+
+            if(FormsAuthentication.IsEnabled && 
+                context.Response.StatusCode == (int)HttpStatusCode.Redirect &&
+                context.Request.IsAjaxRequest())
+            {
+                context.Response.Clear();
+                context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            }
         }
     }
 }

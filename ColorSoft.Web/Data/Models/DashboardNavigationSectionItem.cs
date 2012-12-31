@@ -8,7 +8,7 @@ namespace ColorSoft.Web.Data.Models
         public Guid Id { get; set; }
         public Guid DashboardNavigationSectionId { get; set; }
         public string Name { get; set; }
-        public string Link { get; set; }
+        public string Template { get; set; }
         public string Title { get; set; }
         public bool IsActive { get; set; }
         public int SortOrder { get; set; }

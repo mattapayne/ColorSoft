@@ -58,7 +58,7 @@ namespace ColorSoft.Data.Migrations.Migrations
                 NotNullable().
                 WithColumn(DashboardNavigationSectionItemTable.Columns.SortOrder).AsInt32().NotNullable().
                 WithColumn(DashboardNavigationSectionItemTable.Columns.Name).AsString(255).NotNullable().
-                WithColumn(DashboardNavigationSectionItemTable.Columns.Link).AsString(Int32.MaxValue).NotNullable().
+                WithColumn(DashboardNavigationSectionItemTable.Columns.Template).AsString(255).NotNullable().
                 WithColumn(DashboardNavigationSectionItemTable.Columns.IsActive).AsBoolean().NotNullable().
                 WithDefaultValue(true).
                 WithColumn(DashboardNavigationSectionItemTable.Columns.Title).AsString(255).Nullable();

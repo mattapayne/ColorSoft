@@ -18,6 +18,7 @@ namespace ColorSoft.Web.Commands.Users
         {
             using (dynamic trans = _connection.Db().BeginTransaction())
             {
+                trans.UsersRoles.DeleteByUserId(args);
                 trans.Users.DeleteById(args);
                 trans.Commit();
             }

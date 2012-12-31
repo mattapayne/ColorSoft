@@ -1,59 +1,46 @@
 ﻿@using System.Web.Optimization
 @using ColorSoft.Web.Extensions
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>@ViewBag.Title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        @Styles.Render("~/Css/bootstrap", "~/Css/jquery-ui", "~/Css/application")
-        @RenderSection("css", required: false)
-        @Html.CommonJsSetup()
-        @Scripts.Render("~/scripts/jQuery", "~/scripts/jQueryUI", "~/scripts/bootstrap", "~/scripts/underscore", "~/scripts/common")
-        @RenderSection("scripts", required: false)
-        <!--[if lt IE 9]>
+<html lang="en" ng-app="colorSoft">
+<head>
+    <meta charset="utf-8">
+    <title>ColorSoft :: Custom Color Matching Management Software</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @Styles.Render("~/Css/bootstrap", "~/Css/jquery-ui", "~/Css/application", "~/Css/dashboard", "~/Css/angular-ui")
+    @Scripts.Render("~/scripts/jQuery", "~/scripts/jQueryUI", "~/scripts/bootstrap", "~/scripts/underscore", "~/scripts/angular")
+    <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
         <![endif]-->
-    </head>
-    <body>
-        <div id="top-navigation" class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
-                                                                                                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-                    </a><a class="brand" href="#">ColorSoft</a>
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            <li id="home">@Html.ActionLink("Home", MVC.Home.Index())</li>
-                            <li id="about">@Html.ActionLink("About", MVC.About.Index())</li>
-                            <li id="contact">@Html.ActionLink("Contact", MVC.Messaging.Index())</li>
-                            @if (Request.IsAuthenticated)
-                            {
-                                <li id="dashboard">@Html.ActionLink("Dashboard", MVC.Dashboard.Index())</li>
-                            }
-                        </ul>
-                        <ul id="auth" class="nav nav-collapse collapse pull-right">
-                            @{
-                                Html.RenderPartial(Request.IsAuthenticated ? MVC.Shared.Views._Logout : MVC.Shared.Views._Login);
-                            }
-                        </ul>
-                    </div>
+</head>
+<body ng-controller="MainCtrl">
+    <div id="top-navigation" class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span
+                                                                                                 class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </a><a class="brand" href="#">ColorSoft</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li id="about" ng-class="getNavigationItemClass('about')"><a href="#/About">About</a></li>
+                        <li id="contact" ng-class="getNavigationItemClass('contact')"><a href="#/Contact">Contact</a></li>
+                        <li id="dashboard" ng-class="getNavigationItemClass('dashboard')" ng-show="isLoggedIn()"><a href="#/Dashboard">Dashboard</a></li>
+                    </ul>
+                    <ul class="nav pull-right">
+                        <li ng-hide="isLoggedIn()"><a ng-click="promptForLogin()">Login</a></li>
+                        <li ng-show="isLoggedIn()"><a ng-click="logout()">({{ userName }}) Logout</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="container" id="content-container">
-           @RenderBody()
-        </div>
-        @if (Request.IsAuthenticated)
-        {
-            using (Html.BeginForm(MVC.Authentication.Logout(), FormMethod.Post, new {id = "logout-form"}))
-            {
-            }
-        }
-        <div id="dialog-container">
-        </div>
-        @RenderSection("footerScripts", required: false)
-    </body>
+    </div>
+    <div class="container" id="content-container" ng-view>
+        @RenderBody()
+    </div>
+     @{ Html.RenderPartial(MVC.Templates.Views._Login); }
+    @Html.RenderColorSoftApplication()
+    @Html.RenderApplicationUrls()
+    @Html.RenderTemplateUrls()
+</body>
 </html>

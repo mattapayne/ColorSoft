@@ -1,0 +1,37 @@
+﻿<form name="form" novalidate>
+    <div class="alert" ng-class="getAlertClass()" ng-show="hasNotifications()">
+        <ul>
+            <li ng-repeat="notification in notifications">{{ notification.value }}</li>
+        </ul>
+    </div>
+            <div id="debug">
+            {{ message }}
+        </div>
+    <fieldset>
+        <legend>Contact Us!</legend>
+        <div class="control-group">
+            <label class="control-label" for="Email">Email</label>
+            <div class="controls">
+                <input type="email" id="Email" ng-model="message.Email" required placeholder="Your email address" required />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Subject">Subject</label>
+            <div class="controls">
+                <input type="text" id="Subject" ng-model="message.Subject" required placeholder="Type your subject here"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="Message">Message</label>
+            <div class="controls">
+                <textarea id="Message" ng-model="message.Message" rows="10" cols="50" required placeholder="Type your message here" class="span12"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="button" class="btn btn-primary" ng-click="submitMessage()" ng-disabled="isFormInvalid()">Send!</button>
+                <button type="button" class="btn" ng-click="reset()" ng-disabled="isUnchanged()">Reset</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

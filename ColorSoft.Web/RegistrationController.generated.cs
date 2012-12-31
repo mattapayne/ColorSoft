@@ -55,22 +55,15 @@ namespace ColorSoft.Web.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
-            public readonly string New = "New";
+            public readonly string Create = "Create";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
-            public const string New = "New";
+            public const string Create = "Create";
         }
 
 
-        static readonly ActionParamsClass_New s_params_New = new ActionParamsClass_New();
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_New NewParams { get { return s_params_New; } }
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_New {
-            public readonly string model = "model";
-        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -79,9 +72,7 @@ namespace ColorSoft.Web.Controllers {
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass {
-                public readonly string New = "New";
             }
-            public readonly string New = "~/Views/Registration/New.cshtml";
         }
     }
 
@@ -89,14 +80,8 @@ namespace ColorSoft.Web.Controllers {
     public class T4MVC_RegistrationController: ColorSoft.Web.Controllers.RegistrationController {
         public T4MVC_RegistrationController() : base(Dummy.Instance) { }
 
-        public override System.Web.Mvc.ActionResult New() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.New);
-            return callInfo;
-        }
-
-        public override System.Web.Mvc.ActionResult New(ColorSoft.Web.Models.Registration.RegistrationViewModel model) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.New);
-            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
+        public override System.Web.Mvc.JsonResult Create() {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Create);
             return callInfo;
         }
 

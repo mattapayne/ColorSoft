@@ -13,18 +13,13 @@ namespace ColorSoft.Web.App_Start
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/angular").
                 Include("~/scripts/lib/angular.js", 
                 "~/scripts/lib/angular-resource.js",
-                "~/scripts/lib/angular-ui/angular-ui.js"));
+                "~/scripts/lib/angular-ui/angular-ui.js", "~/scripts/lib/select2.js"));
 
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/applications/colorsoft").
-                                        Include("~/Scripts/applications/colorsoft/controllers/*.js",
+                                        Include("~/Scripts/applications/colorsoft/colorsoft.js",
                                                 "~/Scripts/applications/colorsoft/services/*.js",
-                                                "~/Scripts/applications/colorsoft/colorsoft.js", 
+                                                "~/Scripts/applications/colorsoft/controllers/*.js",
                                                 "~/Scripts/applications/colorsoft/directives/*.js"));
-
-            BundleTable.Bundles.Add(new ScriptBundle("~/scripts/applications/messaging").
-                                        Include("~/Scripts/applications/messaging/controllers/*.js",
-                                                "~/Scripts/applications/messaging/services/*.js",
-                                                "~/Scripts/applications/messaging/messaging.js"));
         }
     }
 }

@@ -1,18 +1,19 @@
 ﻿@model ColorSoft.Web.Models.DashboardNavigation.DashboardNavigationViewModel
-<div class="accordion affix-top" id="navigation-menu">
+<div class="accordion" id="navigation-menu">
     @foreach (var navigationSection in Model.Sections)
     {
         var isUserAllowedAccessToSection = navigationSection.Roles.Any(x => User.IsInRole(x));
-
+        var id = Guid.NewGuid();
+        
         if (isUserAllowedAccessToSection)
         {
         <div class="accordion-group">
             <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="navigation-menu" href="#@navigationSection.Id.ToString()">
+                <span class="accordion-toggle" data-toggle="collapse" data-parent="#navigation-menu" data-target="#@id">
                     @navigationSection.Name
-                </a>
+                </span>
             </div>
-            <div class="accordion-body collapse" id="@navigationSection.Id.ToString()">
+            <div class="accordion-body collapse" id="@id">
                 <div class="accordion-inner">
                     <ul>
                         @foreach (var menuItem in navigationSection.Items)
@@ -21,7 +22,7 @@
 
                             if (isUserAllowedAccessToItem)
                             {
-                            <li><a href="@menuItem.Link" class="navigation-menu-item" title="@menuItem.Title">@menuItem.Name</a></li>   
+                            <li><a class="navigation-menu-item" title="@menuItem.Title" ng-click="setView('@menuItem.Id')">@menuItem.Name</a></li>   
                             }
                         }
                     </ul>

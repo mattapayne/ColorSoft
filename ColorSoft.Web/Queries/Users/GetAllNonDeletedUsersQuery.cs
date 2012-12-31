@@ -17,7 +17,9 @@ namespace ColorSoft.Web.Queries.Users
 
         public IEnumerable<User> Execute()
         {
-            return _connection.Db().Users.FindAllByDeletedAt(null).OrderByCreatedAtDescending();
+            return _connection.Db().Users.FindAllByDeletedAt(null).
+                WithOrganization().
+                OrderByCreatedAtDescending();
         }
 
         #endregion

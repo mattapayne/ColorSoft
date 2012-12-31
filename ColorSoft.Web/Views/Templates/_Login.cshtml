@@ -1,0 +1,35 @@
+﻿<div ui-modal id="loginDialog" class="modal hide fade" tabindex="-1" ng-model="loginDialogVisible"
+    ng-controller="LoginCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="closeLoginDialog()">
+            &times;</button>
+        <h3>
+            Login
+        </h3>
+    </div>
+    <div class="modal-body">
+        <div ng-show="errorsVisible" class="alert alert-error">
+            <ul>
+                <li ng-repeat="error in errors">{{ error }}</li>
+            </ul>
+        </div>
+        <div class="control-group">
+            <label for="Username" class="control-label">
+                User name:</label>
+            <div class="controls">
+                <input type="text" id="userName" ng-model="UserName" required />
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="Password" class="control-label">
+                Password:</label>
+            <div class="controls">
+                <input type="text" id="Password" ng-model="Password" required />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="closeLoginDialog()" class="btn">Cancel</a> <a ng-click="login()" class="btn btn-primary">
+            Login</a>
+    </div>
+</div>

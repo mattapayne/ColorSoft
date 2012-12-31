@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ColorSoft.Web.Models.Users
 {
@@ -21,5 +22,7 @@ namespace ColorSoft.Web.Models.Users
 
         [Display(Name = "Password Confirmation")]
         public string PasswordConfirmation { get; set; }
+
+        public Guid? OrganizationId { get; set; }
     }
 }

@@ -46,3 +46,7 @@
  .addUserForm input.ng-valid.ng-dirty {
         background-color: #78FA89;
 }
+
+.accordion-toggle {
+    color: #08C;
+}

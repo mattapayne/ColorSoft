@@ -1,0 +1,83 @@
+﻿@using ColorSoft.Web.Data.Models
+<div ui-modal id="addDialog" class="fade addUser" tabindex="-1" ng-model="addDialogVisible"
+    ng-controller="AddUserCtrl">
+    <div class="modal-header">
+        <button type="button" ng-click="closeAddDialog()" class="close" aria-hidden="true">
+            &times;</button>
+        <h3>
+            Add User
+        </h3>
+    </div>
+    <div class="modal-body">
+        <div id="debug">
+            {{ user }}
+        </div>
+        <form novalidate name="addUserForm" class="addUserForm">
+            <div class="alert alert-error" ng-show="">
+            </div>
+            <div class="control-group">
+                <label for="FirstName" class="control-label">
+                    First name:</label>
+                <div class="controls">
+                    <input type="text" name="FirstName" id="FirstName" ng-model="user.FirstName" required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="LastName" class="control-label">
+                    Last name:
+                </label>
+                <div class="controls">
+                    <input type="text" name="LastName" id="LastName" ng-model="user.LastName" required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="UserName" class="control-label">
+                    User name:</label>
+                <div class="controls">
+                    <input type="text" name="UserName" id="UserName" ng-model="user.UserName" required
+                           must-be-unique />
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="EmailAddress" class="control-label">
+                    Email Address:</label>
+                <div class="controls">
+                    <input type="email" name="EmailAddress" id="EmailAddress" ng-model="user.EmailAddress"
+                           required />
+                </div>
+            </div>
+            @if(User.IsInRole(Role.ColorSoftAdministrator))
+            {
+                <div class="control-group">
+                    <label for="OrganizationID" class="control-label">Organization:</label>
+                    <div class="controls">
+                        <select id="OrganizationID" ui-select2 ng-model="user.OrganizationId" data-placeholder="-- Select an organization --">
+                            <option></option>
+                            <option ng-repeat="organization in organizations" value="{{organization.Id}}">{{ organization.Name }}</option>
+                        </select>
+                    </div>
+                </div>
+            }
+            <div class="control-group">
+                <label for="Password" class="control-label">
+                    Password:</label>
+                <div class="controls">
+                    <input type="password" name="Password" id="Password" ng-model="user.Password"
+                           required />
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="PasswordConfirmation" class="control-label">
+                    Password Confirmation:</label>
+                <div class="controls">
+                    <input type="password" name="PasswordConfirmation" id="PasswordConfirmation" ng-model="user.PasswordConfirmation"
+                           required must-match="user.Password" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a ng-click="closeAddDialog()" class="btn">No</a> <a ng-click="createUser()" class="btn btn-primary">
+            Yes</a>
+    </div>
+</div>

@@ -31,5 +31,10 @@ namespace ColorSoft.Web.Infrastructure.Authentication
         {
             get { return _identity.Id; }
         }
+
+        public Guid? OrganizationId
+        {
+            get { return _identity.OrganizationId; }
+        }
     }
 }

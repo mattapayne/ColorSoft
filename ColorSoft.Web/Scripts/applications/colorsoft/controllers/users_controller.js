@@ -1,12 +1,15 @@
-﻿ColorSoft.Controllers = ColorSoft.Controllers || {};
-
-ColorSoft.Controllers.UsersCtrl = function ($scope, $routeParams, User) {
-    $scope.users = User.query();
-    $scope.selectedUsers = [];
+﻿angular.module('colorSoft').controller('UsersCtrl', ['$scope', 'UserService', function ($scope, UserService) {
+    $scope.users = UserService.query();
     $scope.sortValue = 'CreatedAt';
 
     $scope.showAddDialog = function () {
         $scope.$broadcast("users:show-add-dialog");
+    };
+
+    $scope.selectedUsers = function () {
+        return _.filter($scope.users, function (user) {
+            return user.isSelected();
+        });
     };
 
     $scope.showDeleteDialog = function (user) {
@@ -14,12 +17,13 @@ ColorSoft.Controllers.UsersCtrl = function ($scope, $routeParams, User) {
     };
 
     $scope.showDeleteAllDialog = function () {
-        var users = $scope.selectedUsers;
-        $scope.$broadcast("users:show-delete-dialog", { users: users });
+        $scope.$broadcast("users:show-delete-dialog", { users: $scope.selectedUsers() });
     };
 
     $scope.allSelected = function () {
-        return ($scope.users.length > 0) && ($scope.users.length == $scope.selectedUsers.length);
+        return $scope.users.length > 0 && _.every($scope.users, function (user) {
+            return user.isSelected();
+        });
     };
 
     $scope.$on("users:created", function (event, args) {
@@ -27,18 +31,14 @@ ColorSoft.Controllers.UsersCtrl = function ($scope, $routeParams, User) {
     });
 
     $scope.$on("users:deleted", function (event, args) {
-        _.each(args.users, function (user) {
-            $scope.users.remove(user);
+        $scope.users = _.removalAll($scope.users, args.users, function (item, itemToRemove) {
+            return item.Id == itemToRemove.Id;
         });
     });
 
     $scope.updateSelection = function ($event, user) {
         var checkbox = $event.target;
-        if (checkbox.checked) {
-            $scope.selectedUsers.push(user);
-        } else {
-            $scope.selectedUsers.remove(user);
-        }
+        user.setSelected(checkbox.checked);
     };
 
     $scope.saveUser = function (user) {
@@ -55,22 +55,14 @@ ColorSoft.Controllers.UsersCtrl = function ($scope, $routeParams, User) {
         user.setEditing(false);
     };
 
-    $scope.isSelected = function (user) {
-        return _.contains($scope.selectedUsers, user);
-    };
-
     $scope.toggleAllSelected = function () {
-        var all = $scope.allSelected();
-        if (all) {
-            $scope.selectedUsers = [];
-        } else {
-            _.each($scope.users, function (user) {
-                $scope.selectedUsers.push(user);
-            });
-        }
+        var allCurrentlySelected = $scope.allSelected();
+        _.each($scope.users, function (user) {
+            user.setSelected(!allCurrentlySelected);
+        });
     };
 
     $scope.anySelected = function () {
-        return $scope.selectedUsers.length > 0;
+        return $scope.selectedUsers().length > 0;
     };
-}
+} ]);

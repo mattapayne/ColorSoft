@@ -24,7 +24,9 @@ namespace ColorSoft.Web.Infrastructure.AutoMapper.Profiles.Users
                 ForMember(d => d.CreatedAt, opt => opt.UseValue(DateTime.UtcNow)).
                 ForMember(d => d.DeletedAt, opt => opt.UseValue(null));
 
-            CreateMap<User, UserViewModel>().ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt.ToShortDateString()));
+            CreateMap<User, UserViewModel>().
+                ForMember(d => d.OrganizationName, opt => opt.MapFrom(s => s.Organization == null ? String.Empty : s.Organization.Name)).
+                ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt.ToShortDateString()));
 
             CreateMap<UserViewModel, User>().DoNotSet(d => d.HashedPassword, d => d.CreatedAt, d => d.Id,
                                                       d => d.DeletedAt);

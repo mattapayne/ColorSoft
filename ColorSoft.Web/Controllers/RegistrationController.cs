@@ -1,24 +1,12 @@
 ﻿using System.Web.Mvc;
-using ColorSoft.Web.Models.Registration;
 
 namespace ColorSoft.Web.Controllers
 {
-    public partial class RegistrationController : AbstractController
+    public partial class RegistrationController : Controller
     {
-        public virtual ActionResult New()
+        public virtual JsonResult Create()
         {
-            return View(new RegistrationViewModel());
-        }
-
-        [HttpPost]
-        public virtual ActionResult New(RegistrationViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                return null;
-            }
-
-            return View(model);
+            return Json(new {Success = true});
         }
     }
 }

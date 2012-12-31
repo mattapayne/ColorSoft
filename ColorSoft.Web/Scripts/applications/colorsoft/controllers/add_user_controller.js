@@ -1,26 +1,26 @@
-﻿ColorSoft.Controllers = ColorSoft.Controllers || {};
-
-ColorSoft.Controllers.AddUserCtrl = function ($scope, $routeParams, User) {
-    $scope.newUser = null;
+﻿angular.module("colorSoft").controller('AddUserCtrl', ['$scope', '$routeParams', 'UserService', 'OrganizationService',
+    function ($scope, $routeParams, UserService, OrganizationService) {
+    $scope.user = null;
     $scope.addDialogVisible = false;
-
+    $scope.organizations = OrganizationService.query();
+    
     $scope.$on("users:show-add-dialog", function () {
-        $scope.newUser = new User();
+        $scope.user = new UserService.create();
         $scope.addDialogVisible = true;
     });
 
     $scope.closeAddDialog = function () {
-        $scope.newUser = null;
+        $scope.user = null;
         $scope.addDialogVisible = false;
     };
 
     $scope.createUser = function () {
-        var user = $scope.newUser;
-        if ($scope.newUser != null) {
-            $scope.newUser.$save({}, function () {
+        var user = $scope.user;
+        if (user != null) {
+            user.$save({}, function () {
                 $scope.closeAddDialog();
                 $scope.$emit("users:created", { user: user });
             });
         }
     };
-};
+} ]);

@@ -148,15 +148,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\ColorSoftAppCssBundleConfig.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\Messages\CreateMessageCommand.cs" />
     <Compile Include="Commands\Messages\DeleteMessageCommand.cs" />
     <Compile Include="Commands\Messages\ICreateMessageCommand.cs" />
     <Compile Include="Commands\Messages\IDeleteMessageCommand.cs" />
+    <Compile Include="Commands\Organizations\CreateOrganizationCommand.cs" />
+    <Compile Include="Commands\Organizations\ICreateOrganizationCommand.cs" />
+    <Compile Include="Commands\Organizations\IUpdateOrganizationCommand.cs" />
+    <Compile Include="Commands\Organizations\UpdateOrganizationCommand.cs" />
     <Compile Include="Commands\Users\CreateUserCommand.cs" />
     <Compile Include="Commands\Users\DeleteUserCommand.cs" />
     <Compile Include="Commands\Users\ICreateUserCommand.cs" />
@@ -165,21 +166,32 @@
     <Compile Include="Commands\Users\UpdateUserCommand.cs" />
     <Compile Include="Controllers\Api\AuthenticatedApiController.cs" />
     <Compile Include="Controllers\Api\ContactController.cs" />
+    <Compile Include="Controllers\Api\DashboardPermissionsController.cs" />
     <Compile Include="Controllers\Api\MessagesController.cs" />
+    <Compile Include="Controllers\Api\OrganizationsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
+    <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="Data\IDatabaseProvider.cs" />
     <Compile Include="Data\Models\DashboardNavigationSection.cs" />
     <Compile Include="Data\Models\DashboardNavigationSectionItem.cs" />
     <Compile Include="Data\Models\DashboardNavigationSectionItemRole.cs" />
     <Compile Include="Data\Models\DashboardNavigationSectionRole.cs" />
     <Compile Include="Data\Models\Message.cs" />
+    <Compile Include="Data\Models\Organization.cs" />
     <Compile Include="Data\Models\Role.cs" />
     <Compile Include="Data\Models\UserRole.cs" />
     <Compile Include="Data\SimpleDbDatabaseProvider.cs" />
+    <Compile Include="HomeController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\Authentication\IApplicationUser.cs" />
     <Compile Include="Infrastructure\AutoMapper\Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardNavigation\DashboardNavigationSectionItemProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardNavigation\DashboardNavigationSectionProfile.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardPermissions\DashboardPermissionProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\Message\MessageProfile.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\Organizations\OrganizationProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Resolvers\DashboardNavigation\DashboardNavigationSectionItemViewModelResolver.cs" />
     <Compile Include="Infrastructure\CustomAuthenticationModule.cs" />
     <Compile Include="Data\Models\User.cs" />
@@ -192,32 +204,23 @@
     <Compile Include="Infrastructure\Modules\AutoMapperModule.cs" />
     <Compile Include="Infrastructure\Modules\CommandsModule.cs" />
     <Compile Include="Infrastructure\Modules\FactoryModule.cs" />
+    <Compile Include="Infrastructure\Modules\HttpRequestModule.cs" />
     <Compile Include="Infrastructure\Modules\IdentityModule.cs" />
     <Compile Include="Infrastructure\Modules\QueriesModule.cs" />
     <Compile Include="Infrastructure\Modules\SimpleDataModule.cs" />
     <Compile Include="Infrastructure\Modules\ServicesModule.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
-    <Compile Include="Lib\MessageCollection.cs" />
-    <Compile Include="Lib\MessageType.cs" />
-    <Compile Include="MessagingController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Api\DashboardPermissions\DashboardPermissionViewModel.cs" />
+    <Compile Include="Models\Api\Organizations\AddOrganizationViewModel.cs" />
+    <Compile Include="Models\Api\Organizations\OrganizationViewModel.cs" />
     <Compile Include="Models\Api\Users\UserViewModel.cs" />
     <Compile Include="AuthenticationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AbstractController.cs" />
-    <Compile Include="Controllers\MessagingController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\DashboardNavigationController.cs" />
-    <Compile Include="Controllers\RegistrationController.cs" />
-    <Compile Include="DashboardController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="DashboardNavigationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -225,9 +228,6 @@
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="HomeController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Authentication\LoginViewModel.cs" />
     <Compile Include="Models\Api\Messages\MessageViewModel.cs" />
@@ -247,6 +247,10 @@
     <Compile Include="Queries\IQuery.cs" />
     <Compile Include="Queries\Messages\GetMessagesQuery.cs" />
     <Compile Include="Queries\Messages\IGetMessagesQuery.cs" />
+    <Compile Include="Queries\Organizations\GetOrganizationByIdQuery.cs" />
+    <Compile Include="Queries\Organizations\GetOrganizationsQuery.cs" />
+    <Compile Include="Queries\Organizations\IGetOrganizationByIdQuery.cs" />
+    <Compile Include="Queries\Organizations\IGetOrganizationsQuery.cs" />
     <Compile Include="Queries\Roles\GetRolesQuery.cs" />
     <Compile Include="Queries\Roles\IGetRolesQuery.cs" />
     <Compile Include="Queries\Users\GetAllNonDeletedUsersQuery.cs" />
@@ -264,7 +268,9 @@
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IAuthCookieService.cs" />
     <Compile Include="Services\IPasswordService.cs" />
+    <Compile Include="Services\ITemplateUrlGenerationService.cs" />
     <Compile Include="Services\PasswordService.cs" />
+    <Compile Include="Services\TemplateUrlGenerationService.cs" />
     <Compile Include="Services\Users\IUserService.cs" />
     <Compile Include="Services\Users\UserService.cs" />
     <Compile Include="SharedController.generated.cs">
@@ -276,6 +282,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="T4MVC.ModelUnbinder.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TemplatesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Validation\PropertyError.cs" />
@@ -297,26 +306,38 @@
     <Content Include="Content\Css\bootstrap.min.css" />
     <Content Include="Content\Css\application.css" />
     <Content Include="Content\Css\dashboard.css" />
+    <Content Include="Content\Css\select2.css" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\images\icons_2.png" />
+    <Content Include="Content\images\select2.png" />
+    <Content Include="Content\images\select2x2.png" />
+    <Content Include="Content\images\spinner.gif" />
     <Content Include="Content\images\splitpane_handle-ew.gif" />
     <Content Include="Content\images\splitpane_handle-sn.gif" />
+    <Content Include="Scripts\applications\colorsoft\controllers\about_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\add_organization_controller.js" />
     <Content Include="Scripts\applications\colorsoft\controllers\add_user_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\contact_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\dashboard_controller.js" />
     <Content Include="Scripts\applications\colorsoft\controllers\delete_message_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\delete_organization_controller.js" />
     <Content Include="Scripts\applications\colorsoft\controllers\delete_user_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\home_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\login_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\main_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\organizations_controller.js" />
+    <Content Include="Scripts\applications\colorsoft\controllers\register_controller.js" />
     <Content Include="Scripts\applications\colorsoft\directives\colorsoft_directives.js" />
-    <Content Include="Scripts\applications\messaging\controllers\messages_controller.js" />
-    <Content Include="Scripts\applications\messaging\messaging.js" />
-    <Content Include="Scripts\applications\messaging\services\services.js" />
+    <Content Include="Scripts\applications\colorsoft\services\dashboard_service.js" />
+    <Content Include="Scripts\applications\colorsoft\services\messages_service.js" />
+    <Content Include="Scripts\applications\colorsoft\services\organizations_service.js" />
+    <Content Include="Scripts\applications\colorsoft\services\users_service.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.min.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui.min.js" />
-    <Content Include="Templates\messages\index.html" />
-    <Content Include="Templates\messages\new.html" />
-    <Content Include="Templates\users\index.html" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -381,8 +402,6 @@
     <Content Include="Scripts\applications\colorsoft\colorsoft.js" />
     <Content Include="Scripts\applications\colorsoft\controllers\messages_controller.js" />
     <Content Include="Scripts\applications\colorsoft\controllers\users_controller.js" />
-    <Content Include="Scripts\applications\colorsoft\services\services.js" />
-    <Content Include="Scripts\common.js" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Scripts\lib\angular-resource.js" />
     <Content Include="Scripts\lib\angular-resource.min.js" />
@@ -395,6 +414,9 @@
     <Content Include="Scripts\lib\jquery-1.8.2.min.js" />
     <Content Include="Scripts\lib\jquery-ui-1.9.0.js" />
     <Content Include="Scripts\lib\jquery-ui-1.9.0.min.js" />
+    <Content Include="Scripts\lib\select2.js" />
+    <Content Include="Scripts\lib\select2.min.js" />
+    <Content Include="Scripts\lib\underscore-ext.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\underscore.min.js" />
     <Content Include="Web.config">
@@ -407,11 +429,23 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\_Login.cshtml" />
-    <Content Include="Views\Shared\_Logout.cshtml" />
-    <Content Include="Views\Dashboard\Index.cshtml" />
     <Content Include="Views\DashboardNavigation\_Index.cshtml" />
-    <Content Include="Views\Registration\New.cshtml" />
+    <Content Include="Views\Templates\_Contact.cshtml" />
+    <Content Include="Views\Templates\_About.cshtml" />
+    <Content Include="Views\Templates\_Dashboard.cshtml" />
+    <Content Include="Views\Templates\_Home.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Templates\_Register.cshtml" />
+    <Content Include="Views\Templates\_Login.cshtml" />
+    <Content Include="Views\Templates\_UsersList.cshtml" />
+    <Content Include="Views\Templates\_MessagesList.cshtml" />
+    <Content Include="Views\Templates\_AddUser.cshtml" />
+    <Content Include="Views\Templates\_DeleteUser.cshtml" />
+    <Content Include="Views\Templates\_ProductsList.cshtml" />
+    <Content Include="Views\Templates\_OrganizationsList.cshtml" />
+    <Content Include="Views\Templates\_ColorMatchesList.cshtml" />
+    <Content Include="Views\Templates\_AddOrganization.cshtml" />
+    <Content Include="Views\Templates\_DeleteOrganization.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -421,15 +455,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Messaging\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\About\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="T4MVC.tt">

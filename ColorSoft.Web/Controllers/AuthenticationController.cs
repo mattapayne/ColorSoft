@@ -13,6 +13,15 @@ namespace ColorSoft.Web.Controllers
             _authenticationService = authenticationService;
         }
 
+        [HttpGet]
+        public virtual ActionResult LoginCheck()
+        {
+            return Request.IsAuthenticated
+                       ? Json(new {LoggedIn = true, Username = CurrentUser.Identity.Name},
+                              JsonRequestBehavior.AllowGet)
+                       : Json(new {LoggedIn = false}, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public virtual ActionResult Login(LoginViewModel model)
         {
@@ -21,18 +30,24 @@ namespace ColorSoft.Web.Controllers
                 if (_authenticationService.Authenticate(model.Username, model.Password))
                 {
                     _authenticationService.SetAuthCookie(model.Username, model.RememberMe);
-                    return Redirect(_authenticationService.DefaultUrl);
+                    return Json(new {model.Username, LoggedIn = true});
                 }
             }
 
-            return RedirectToAction(MVC.Home.Index().AddRouteValues(new {model.Username, Failed = true}));
+            return
+                Json(
+                    new
+                        {
+                            LoggedIn = false,
+                            Errors = new[] {"Log in failed. Please check your username and password and try again."}
+                        });
         }
 
         [HttpPost]
-        public virtual ActionResult Logout()
+        public virtual JsonResult Logout()
         {
             _authenticationService.SignOut();
-            return RedirectToAction(MVC.Home.Index());
+            return Json(new {Success = true});
         }
     }
 }

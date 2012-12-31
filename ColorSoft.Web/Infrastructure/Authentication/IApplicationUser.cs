@@ -6,5 +6,6 @@ namespace ColorSoft.Web.Infrastructure.Authentication
     public interface IApplicationUser : IPrincipal
     {
         Guid? Id { get; }
+        Guid? OrganizationId { get; }
     }
 }

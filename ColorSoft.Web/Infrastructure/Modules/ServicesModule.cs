@@ -8,7 +8,9 @@ namespace ColorSoft.Web.Infrastructure.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof (MvcApplication).Assembly).AssignableTo<IApplicationService>().
-                AsImplementedInterfaces();
+                AsImplementedInterfaces().InstancePerLifetimeScope();
+
+            //builder.RegisterType<UrlGenerationService>().As<IUrlGenerationService>().InstancePerLifetimeScope();
         }
     }
 }

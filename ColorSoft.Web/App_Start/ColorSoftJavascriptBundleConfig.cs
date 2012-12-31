@@ -15,7 +15,7 @@ namespace ColorSoft.Web.App_Start
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/jQueryValidate").Include("~/Scripts/lib/jquery.validate.js"));
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/jQueryValidateUnobtrusive").Include("~/Scripts/lib/jquery.validate.unobtrusive.js"));
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/bootstrap").Include("~/Scripts/lib/bootstrap.js"));
-            BundleTable.Bundles.Add(new ScriptBundle("~/scripts/underscore").Include("~/Scripts/lib/underscore.js"));
+            BundleTable.Bundles.Add(new ScriptBundle("~/scripts/underscore").Include("~/Scripts/lib/underscore.js", "~/Scripts/lib/underscore-ext.js"));
             BundleTable.Bundles.Add(new ScriptBundle("~/scripts/common").Include("~/Scripts/common.js"));
         }
     }

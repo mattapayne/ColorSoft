@@ -1,0 +1,17 @@
+﻿<div ui-modal id="deleteDialog" class="modal hide fade" tabindex="-1" ng-model="deleteDialogVisible"
+    ng-controller="DeleteOrganizationCtrl">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="closeDeleteDialog()">
+            &times;</button>
+        <h3>
+            Confirm Delete
+        </h3>
+    </div>
+    <div class="modal-body">
+        Are you sure you want to delete {{ selectedOrganizationNames() }}?
+    </div>
+    <div class="modal-footer">
+        <a ng-click="closeDeleteDialog()" class="btn">No</a> <a ng-click="deleteOrganizations()"
+            class="btn btn-primary">Yes</a>
+    </div>
+</div>

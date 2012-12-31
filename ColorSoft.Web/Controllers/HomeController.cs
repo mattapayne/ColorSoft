@@ -1,13 +1,12 @@
 ﻿using System.Web.Mvc;
-using ColorSoft.Web.Models.Home;
 
 namespace ColorSoft.Web.Controllers
 {
-    public partial class HomeController : AbstractController
+    public partial class HomeController : Controller
     {
-        public virtual ActionResult Index(LoginAttemptViewModel model)
+        public virtual ActionResult Index()
         {
-            return View(model);
+            return View();
         }
     }
 }

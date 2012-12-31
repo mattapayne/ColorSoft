@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using AutoMapper;
 using ColorSoft.Web.Commands.Messages;
 using ColorSoft.Web.Data.Models;
@@ -17,14 +19,16 @@ namespace ColorSoft.Web.Controllers.Api
             _createMessageCommand = createMessageCommand;
         }
 
-
         [HttpPost]
-        public void Create(MessageViewModel model)
+        public HttpResponseMessage Create(MessageViewModel model)
         {
             if (model != null)
             {
                 _createMessageCommand.Execute(_mappingEngine.Map<MessageViewModel, Message>(model));
+                return Request.CreateResponse(HttpStatusCode.Created);
             }
+
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Unable to send your message.");
         }
     }
 }

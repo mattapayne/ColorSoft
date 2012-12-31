@@ -20,5 +20,7 @@ namespace ColorSoft.Web.Models.Api.Users
         public string EmailAddress { get; set; }
 
         public string CreatedAt { get; set; }
+
+        public string OrganizationName { get; set; }
     }
 }

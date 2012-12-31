@@ -10,6 +10,7 @@ using ColorSoft.Web.Services.Users;
 
 namespace ColorSoft.Web.Controllers.Api
 {
+    [Authorize(Roles = Role.AnyAdministrator)]
     public class UsersController : AuthenticatedApiController
     {
         private readonly IUserService _userService;
@@ -25,7 +26,7 @@ namespace ColorSoft.Web.Controllers.Api
         public IEnumerable<UserViewModel> Index()
         {
             var users = _userService.GetAllNonDeletedUsers();
-            return users.Select(u => MappingEngine.Map<User, UserViewModel>(u));
+            return MappingEngine.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(users);
         }
 
         [HttpPost]

@@ -57,12 +57,14 @@ namespace ColorSoft.Web.Controllers {
         public ActionNamesClass ActionNames { get { return s_actions; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
+            public readonly string LoginCheck = "LoginCheck";
             public readonly string Login = "Login";
             public readonly string Logout = "Logout";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
+            public const string LoginCheck = "LoginCheck";
             public const string Login = "Login";
             public const string Logout = "Logout";
         }
@@ -91,14 +93,19 @@ namespace ColorSoft.Web.Controllers {
     public class T4MVC_AuthenticationController: ColorSoft.Web.Controllers.AuthenticationController {
         public T4MVC_AuthenticationController() : base(Dummy.Instance) { }
 
+        public override System.Web.Mvc.ActionResult LoginCheck() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.LoginCheck);
+            return callInfo;
+        }
+
         public override System.Web.Mvc.ActionResult Login(ColorSoft.Web.Models.Authentication.LoginViewModel model) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Login);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Logout() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Logout);
+        public override System.Web.Mvc.JsonResult Logout() {
+            var callInfo = new T4MVC_JsonResult(Area, Name, ActionNames.Logout);
             return callInfo;
         }
 

@@ -10,5 +10,7 @@ namespace ColorSoft.Web.Data.Models
         public const string ColorSoftAdministrator = "ColorSoft Administrator";
         public const string OrganizationAdministrator = "Organization Administrator";
         public const string OrganizationUser = "Organization User";
+
+        public const string AnyAdministrator = "ColorSoft Administrator,Organization Administrator";
     }
 }

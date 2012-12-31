@@ -19,14 +19,15 @@ namespace ColorSoft.Web.Infrastructure
             builder.RegisterApiControllers(typeof (MvcApplication).Assembly);
             builder.RegisterModule(new AutofacWebTypesModule());
             builder.RegisterAssemblyModules(typeof (MvcApplication).Assembly);
+            builder.RegisterModule<AutofacWebTypesModule>();
 
             var container = builder.Build();
 
-            var autoMapperProfiles = container.Resolve<IEnumerable<Profile>>();
-            Mapper.Initialize(m => autoMapperProfiles.ToList().ForEach(m.AddProfile));
-
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+            var autoMapperProfiles = DependencyResolver.Current.GetService<IEnumerable<Profile>>();
+            Mapper.Initialize(m => autoMapperProfiles.ToList().ForEach(m.AddProfile));
 
             return container;
         }

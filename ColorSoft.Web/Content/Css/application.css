@@ -30,3 +30,7 @@
 .field-validation-error {
     color: red;
 }
+
+.alert ul {
+    list-style-type: none;
+}

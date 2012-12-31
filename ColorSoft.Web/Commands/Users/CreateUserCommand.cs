@@ -21,9 +21,6 @@ namespace ColorSoft.Web.Commands.Users
                 var defaultRole = trans.Roles.FindAllByName(Role.OrganizationUser).FirstOrDefault();
 
                 trans.Users.Insert(args);
-                //trans.Users.Insert(FirstName: args.FirstName, LastName: args.LastName, EmailAddress: args.EmailAddress, 
-                //    HashedPassword: args.HashedPassword, UserName: args.UserName);
-
                 trans.UsersRoles.Insert(UserId: args.Id, RoleId: defaultRole.Id);
 
                 trans.Commit();

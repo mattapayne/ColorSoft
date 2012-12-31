@@ -1,20 +1,6 @@
-﻿@model ColorSoft.Web.Models.Home.LoginAttemptViewModel
-@{
+﻿@{
     ViewBag.Title = "Index";
-    ViewBag.SelectedNavigationItem = "home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@section scripts
-{
-    @if (Model.Failed)
-    {
-        <script type="text/javascript">
-            $(function() {
-                window.ColorSoft.Authentication.showLoginPopup({ username: '@Model.Username', status: 'failed' });
-            });
-        </script>
-    }
-}
-<div>
-    Some static content for the home page
-</div>
+
+<div ng-view></div>

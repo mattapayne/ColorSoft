@@ -87,7 +87,7 @@ namespace ColorSoft.Data.Migrations.Migrations
                             {
                                 var itemId = Guid.NewGuid();
                                 var itemName = item.Attribute("name").Value;
-                                var itemLink = item.Attribute("link").Value;
+                                var itemTemplate = item.Attribute("template").Value;
                                 var itemTitle = item.Attribute("title").Value;
                                 var itemSortOrder = item.Attribute("sort-order").Value;
                                 var itemRoles =
@@ -97,7 +97,7 @@ namespace ColorSoft.Data.Migrations.Migrations
 
                                 //insert the item
                                 cmd.CommandText = String.Format(DashboardNavigationSectionItemTable.InsertTemplateSql,
-                                                                itemId, sectionId, itemName, itemLink, itemTitle, itemSortOrder);
+                                                                itemId, sectionId, itemName, itemTemplate, itemTitle, itemSortOrder);
 
                                 cmd.ExecuteNonQuery();
 
