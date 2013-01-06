@@ -1,4 +1,4 @@
-﻿var colorsoftApplication = angular.module('colorSoft', ['dashboard', 'messages', 'organizations', 'users', 'ui']).
+﻿var colorsoftApplication = angular.module('colorSoft', ['ui']).
     config(['$routeProvider', 'TemplateUrls', '$locationProvider', '$httpProvider',
         function ($routeProvider, TemplateUrls, $locationProvider, $httpProvider) {
             $routeProvider.
@@ -37,7 +37,7 @@
 
             $httpProvider.responseInterceptors.push(interceptor);
         } ]).
-    run(['$rootScope', '$http', 'ApplicationUrls', '$location', function ($rootScope, $http, ApplicationUrls, $location) {
+    run(['$rootScope', '$http', 'ApplicationUrls', function ($rootScope, $http, ApplicationUrls) {
 
         $rootScope.requests401 = [];
         $rootScope.loggedIn = false;
@@ -74,7 +74,7 @@
         });
 
         $rootScope.$on("login:required", function () {
-            $scope.loginDialogVisible = true;
+            $rootScope.loginDialogVisible = true;
         });
 
         $rootScope.$on("login:requested", function (event, args) {

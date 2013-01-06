@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using ColorSoft.Web.Commands.Messages;
 using ColorSoft.Web.Data.Models;
+using ColorSoft.Web.Filters;
 using ColorSoft.Web.Models.Api.Messages;
 using ColorSoft.Web.Queries.Messages;
-using System.Linq;
 
 namespace ColorSoft.Web.Controllers.Api
 {
@@ -34,20 +35,17 @@ namespace ColorSoft.Web.Controllers.Api
         }
 
         [HttpPost]
-        public void Delete(MessageViewModel model)
+        [ModelRequired(ModelParameterName = "ids")]
+        public HttpResponseMessage Delete(Guid[] ids)
         {
-            if (model != null && model.Id.HasValue)
-            {
-                _deleteMessageCommand.Execute(model.Id.Value);
-            }
-        }
-
-        [HttpPost]
-        public void DeleteAll(Guid[] ids)
-        {
-            if (ids != null && ids.Any())
+            try
             {
                 _deleteMessageCommand.Execute(ids);
+                return DeletedResponse();
+            }
+            catch (Exception ex)
+            {
+                return ExceptionErrorResponse(ex);
             }
         }
     }

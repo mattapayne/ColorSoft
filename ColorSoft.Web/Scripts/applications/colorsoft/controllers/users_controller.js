@@ -1,6 +1,10 @@
 ﻿angular.module('colorSoft').controller('UsersCtrl', ['$scope', 'UserService', function ($scope, UserService) {
-    $scope.users = UserService.query();
+    $scope.users = [];
     $scope.sortValue = 'CreatedAt';
+
+    UserService.query().then(function (users) {
+        $scope.users = users;
+    });
 
     $scope.showAddDialog = function () {
         $scope.$broadcast("users:show-add-dialog");
@@ -42,8 +46,10 @@
     };
 
     $scope.saveUser = function (user) {
-        user.$update({}, function () {
+        UserService.update(user).success(function () {
             user.setEditing(false);
+        }).error(function (response) {
+            alert(response);
         });
     };
 
@@ -52,7 +58,7 @@
     };
 
     $scope.cancelEdit = function (user) {
-        user.setEditing(false);
+        user.cancelEditing(false);
     };
 
     $scope.toggleAllSelected = function () {

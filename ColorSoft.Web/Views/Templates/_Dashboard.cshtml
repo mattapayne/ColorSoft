@@ -1,6 +1,7 @@
-﻿<div class="row">
+﻿@using ColorSoft.Web
+<div class="row">
     <div class="span2">
-        @Html.Action(MVC.DashboardNavigation.Index())
+        @T4Extensions.Action(Html, MVC.DashboardNavigation.Index())
     </div>
     <div class="span10">
         <ng-include src='selectedTemplate.TemplateUrl'></ng-include>

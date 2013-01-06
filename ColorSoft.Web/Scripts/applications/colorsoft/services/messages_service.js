@@ -1,27 +1,17 @@
-﻿angular.module('messages', ['ngResource']).
-    factory('MessageService', function ($resource, $http) {
-        var res = $resource('api/:controller/:action', {}, {
-            query: { method: 'GET', isArray: true, params: { action: "Index", controller: 'messages'} },
-            remove: { method: 'DELETE', params: { id: '@Id', action: 'delete', controller: 'messages'} },
-            save: { method: 'POST', params: { action: 'create', controller: 'contact'} },
-            selected: false
-        });
-        //since this is not a resourceful operation, we'll fallback on $http
-        res.removeAll = function (ids) {
-            return $http.post('api/messages/deleteAll', ids);
+﻿angular.module('colorSoft').
+    service("MessageService", ['$http', 'ApplicationUrls', 'Message', function ($http, ApplicationUrls, Message) {
+        this.query = function () {
+            return $http.get(ApplicationUrls.ListMessagesUrl).then(function (response) {
+                return _.map(response.data, function (r) {
+                    return new Message(r);
+                });
+            });
         };
 
-        res.create = function (args) {
-            return new res(args);
+        this.remove = function (ids) {
+            if (!angular.isArray(ids)) {
+                ids = [ids];
+            }
+            return $http.post(ApplicationUrls.DeleteMessagesUrl, angular.toJson(ids));
         };
-
-        res.prototype.isSelected = function () {
-            return this.selected;
-        };
-
-        res.prototype.setSelected = function (selected) {
-            this.selected = selected;
-        };
-
-        return res;
-    });
+    } ]);

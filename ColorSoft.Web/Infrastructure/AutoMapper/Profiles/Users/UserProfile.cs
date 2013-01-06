@@ -3,7 +3,6 @@ using AutoMapper;
 using ColorSoft.Web.Data.Models;
 using ColorSoft.Web.Infrastructure.AutoMapper.Extensions;
 using ColorSoft.Web.Models.Api.Users;
-using ColorSoft.Web.Models.Users;
 using ColorSoft.Web.Services;
 
 namespace ColorSoft.Web.Infrastructure.AutoMapper.Profiles.Users
@@ -25,6 +24,8 @@ namespace ColorSoft.Web.Infrastructure.AutoMapper.Profiles.Users
                 ForMember(d => d.DeletedAt, opt => opt.UseValue(null));
 
             CreateMap<User, UserViewModel>().
+                ForMember(d => d.FullName, opt => opt.Ignore()).
+                ForMember(d => d.OrganizationId, opt => opt.MapFrom(s => s.OrganizationId.HasValue ? s.OrganizationId.Value.ToString() : String.Empty)).
                 ForMember(d => d.OrganizationName, opt => opt.MapFrom(s => s.Organization == null ? String.Empty : s.Organization.Name)).
                 ForMember(d => d.CreatedAt, opt => opt.MapFrom(s => s.CreatedAt.ToShortDateString()));
 

@@ -1,5 +1,10 @@
 ﻿angular.module('colorSoft').controller('MessagesCtrl', ['$scope', 'MessageService', function ($scope, MessageService) {
-    $scope.messages = MessageService.query();
+    $scope.messages = [];
+
+    MessageService.query().then(function (result) {
+        $scope.messages = result;
+    });
+
     $scope.sortValue = 'CreatedAt';
     $scope.reverseSort = true;
 

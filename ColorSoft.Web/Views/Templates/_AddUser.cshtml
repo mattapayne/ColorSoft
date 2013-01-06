@@ -9,8 +9,10 @@
         </h3>
     </div>
     <div class="modal-body">
-        <div id="debug">
-            {{ user }}
+        <div ng-show="errorsVisible()" class="alert alert-error">
+            <ul>
+                <li ng-repeat="error in errors">{{ error }}</li>
+            </ul>
         </div>
         <form novalidate name="addUserForm" class="addUserForm">
             <div class="alert alert-error" ng-show="">

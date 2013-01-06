@@ -16,25 +16,20 @@ namespace ColorSoft.Web.Extensions
             return MvcHtmlString.Create(json);
         }
 
-        public static IHtmlString RenderColorSoftApplication(this HtmlHelper helper)
-        {
-            return Scripts.Render("~/scripts/applications/colorsoft");
-        }
-
         public static IHtmlString RenderTemplateUrls(this HtmlHelper helper)
         {
             var url = new UrlHelper(helper.ViewContext.RequestContext);
 
             var templateUrls = new
-                {
-                    ContactUrl = url.Action(MVC.Templates.Contact()),
-                    AboutUrl = url.Action(MVC.Templates.About()),
-                    DashboardUrl = url.Action(MVC.Templates.Dashboard()),
-                    HomeUrl = url.Action(MVC.Templates.Home()),
-                    RegisterUrl = url.Action(MVC.Templates.Register()),
-                    ListUsersUrl = url.Action(MVC.Templates.UsersList()),
-                    ListMessagesUrl = url.Action(MVC.Templates.MessagesList())
-                };
+            {
+                ContactUrl = url.Action(MVC.Templates.Contact()),
+                AboutUrl = url.Action(MVC.Templates.About()),
+                DashboardUrl = url.Action(MVC.Templates.Dashboard()),
+                HomeUrl = url.Action(MVC.Templates.Home()),
+                RegisterUrl = url.Action(MVC.Templates.Register()),
+                ListUsersUrl = url.Action(MVC.Templates.UsersList()),
+                ListMessagesUrl = url.Action(MVC.Templates.MessagesList())
+            };
 
             var script = @"<script type='text/javascript'>
                         angular.module('colorSoft').constant('TemplateUrls', <INSERT_URLS>);
@@ -43,16 +38,32 @@ namespace ColorSoft.Web.Extensions
             return MvcHtmlString.Create(script);
         }
 
+        public static IHtmlString RenderColorSoftApplication(this HtmlHelper helper)
+        {
+            return Scripts.Render("~/scripts/applications/colorsoft");
+        }
+
         public static IHtmlString RenderApplicationUrls(this HtmlHelper helper)
         {
             var url = new UrlHelper(helper.ViewContext.RequestContext);
 
             var applicationUrls = new
             {
-                RegisterUrl = url.Action(MVC.Registration.Create()),
                 LoginUrl = url.Action(MVC.Authentication.Login()),
                 LogoutUrl = url.Action(MVC.Authentication.Logout()),
-                LoginCheckUrl = url.Action(MVC.Authentication.LoginCheck())
+                LoginCheckUrl = url.Action(MVC.Authentication.LoginCheck()),
+                ListUsersUrl = url.Action("Index", "Api/Users"),
+                CreateUserUrl = url.Action("Create", "Api/Users"),
+                UpdateUserUrl = url.Action("Update", "Api/Users"),
+                DeleteUsersUrl = url.Action("Delete", "Api/Delete"),
+                ListDashboardPermissionsUrl = url.Action("Index", "Api/DashboardPermissions"),
+                ListMessagesUrl = url.Action("Index", "Api/Messages"),
+                CreateMessageUrl = url.Action("Create", "Api/Messages"),
+                DeleteMessagesUrl = url.Action("Delete", "Api/Messages"),
+                ListOrganizationsUrl = url.Action("Index", "Api/Organizations"),
+                CreateOrganizationUrl = url.Action("Create", "Api/Organizations"),
+                UpdateOrganizationUrl = url.Action("Update", "Api/Organizations"),
+                DeleteOrganizationsUrl = url.Action("Delete", "Api/Organizations")
             };
 
             var script = @"<script type='text/javascript'>

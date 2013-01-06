@@ -1,42 +1,27 @@
-﻿angular.module('organizations', ['ngResource']).
-    factory('OrganizationService', function ($resource) {
-        var res = $resource('api/organizations/:action/:id', {}, {
-            query: { method: 'GET', isArray: true, params: { action: 'Index'} },
-            save: { method: 'POST', params: { action: 'create'} },
-            update: { method: 'PUT', params: { action: 'update'} },
-            remove: { method: 'DELETE', params: { action: 'delete', id: '@Id'} },
-            editing: false,
-            selected: false
-        });
-
-        //since this is not a resourceful operation, we'll fallback on $http
-        res.removeAll = function (ids) {
-            return $http.post('api/organizations/deleteAll', ids);
+﻿angular.module('colorSoft').
+    service("OrganizationService", ['$http', 'ApplicationUrls', 'Organization', function ($http, ApplicationUrls, Organization) {
+        this.query = function () {
+            return $http.get(ApplicationUrls.ListOrganizationsUrl).then(function (response) {
+                return _.map(response.data, function (r) {
+                    return new Organization(r);
+                });
+            });
         };
 
-        res.create = function (args) {
-            return new res(args);
+        this.save = function (organization) {
+            return $http.post(ApplicationUrls.CreateOrganizationUrl, organization.asJson());
         };
 
-        res.prototype.isSelected = function () {
-            return this.selected;
+        this.update = function (organization) {
+            return $http.put(ApplicationUrls.UpdateOrganizationUrl, organization.asJson());
         };
 
-        res.prototype.setSelected = function (selected) {
-            this.selected = selected;
+        this.remove = function (ids) {
+            if (!angular.isArray(ids)) {
+                ids = [ids];
+            }
+            return $http.post(ApplicationUrls.DeleteOrganizationsUrl, angular.toJson(ids));
         };
-
-        res.prototype.inEditMode = function () {
-            return this.editing;
-        };
-
-        res.prototype.inViewMode = function () {
-            return !this.editing;
-        };
-
-        res.prototype.setEditing = function (editing) {
-            this.editing = editing;
-        };
-
-        return res;
-    });
+    } ]);
+    
+        

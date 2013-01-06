@@ -1,5 +1,6 @@
 ﻿@using System.Web.Optimization
 @using ColorSoft.Web.Extensions
+@using Scripts = System.Web.Optimization.Scripts
 <!DOCTYPE html>
 <html lang="en" ng-app="colorSoft">
 <head>
@@ -38,7 +39,7 @@
     <div class="container" id="content-container" ng-view>
         @RenderBody()
     </div>
-     @{ Html.RenderPartial(MVC.Templates.Views._Login); }
+    @Html.Partial(MVC.Templates.Views._Login)
     @Html.RenderColorSoftApplication()
     @Html.RenderApplicationUrls()
     @Html.RenderTemplateUrls()

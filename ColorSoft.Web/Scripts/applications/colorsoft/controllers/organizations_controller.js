@@ -1,5 +1,12 @@
-﻿angular.module('colorSoft').controller('OrganizationsCtrl', ['$scope', 'OrganizationService', function($scope, OrganizationService) {
-    $scope.organizations = OrganizationService.query();
+﻿angular.module('colorSoft').controller('OrganizationsCtrl', ['$scope', 'OrganizationService', function ($scope, OrganizationService) {
+
+    $scope.organizations = [];
+    $scope.currentlyEditing = null;
+
+    OrganizationService.query().then(function (result) {
+        $scope.organizations = result;
+    });
+
     $scope.sortValue = 'Name';
 
     $scope.showAddDialog = function () {
@@ -42,8 +49,10 @@
     };
 
     $scope.saveOrganization = function (org) {
-        org.$update({}, function () {
+        OrganizationService.update(org).success(function () {
             org.setEditing(false);
+        }).error(function (response) {
+            alert(response);
         });
     };
 
@@ -52,7 +61,7 @@
     };
 
     $scope.cancelEdit = function (org) {
-        org.setEditing(false);
+        org.cancelEditing();
     };
 
     $scope.toggleAllSelected = function () {
@@ -65,4 +74,4 @@
     $scope.anySelected = function () {
         return $scope.selectedOrganizations().length > 0;
     };
-}]);
+} ]);

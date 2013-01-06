@@ -98,6 +98,7 @@ namespace ColorSoft.Web.Controllers {
                 public readonly string _ColorMatchesList = "_ColorMatchesList";
                 public readonly string _Contact = "_Contact";
                 public readonly string _Dashboard = "_Dashboard";
+                public readonly string _DeleteMessage = "_DeleteMessage";
                 public readonly string _DeleteOrganization = "_DeleteOrganization";
                 public readonly string _DeleteUser = "_DeleteUser";
                 public readonly string _Home = "_Home";
@@ -114,6 +115,7 @@ namespace ColorSoft.Web.Controllers {
             public readonly string _ColorMatchesList = "~/Views/Templates/_ColorMatchesList.cshtml";
             public readonly string _Contact = "~/Views/Templates/_Contact.cshtml";
             public readonly string _Dashboard = "~/Views/Templates/_Dashboard.cshtml";
+            public readonly string _DeleteMessage = "~/Views/Templates/_DeleteMessage.cshtml";
             public readonly string _DeleteOrganization = "~/Views/Templates/_DeleteOrganization.cshtml";
             public readonly string _DeleteUser = "~/Views/Templates/_DeleteUser.cshtml";
             public readonly string _Home = "~/Views/Templates/_Home.cshtml";

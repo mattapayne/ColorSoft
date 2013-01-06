@@ -1,74 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
-using ColorSoft.Web.Commands.Organizations;
 using ColorSoft.Web.Data.Models;
+using ColorSoft.Web.Filters;
 using ColorSoft.Web.Models.Api.Organizations;
-using ColorSoft.Web.Queries.Organizations;
+using ColorSoft.Web.Services.Organizations;
 
 namespace ColorSoft.Web.Controllers.Api
 {
-    [Authorize(Roles = Role.AnyAdministrator)]
     public class OrganizationsController : AuthenticatedApiController
     {
-        private readonly IGetOrganizationsQuery _getOrganizationsQuery;
-        private readonly ICreateOrganizationCommand _createOrganizationCommand;
-        private readonly IUpdateOrganizationCommand _updateOrganizationCommand;
-        private readonly IGetOrganizationByIdQuery _getOrganizationByIdQuery;
+        private readonly IOrganizationService _organizationService;
 
-        public OrganizationsController(IGetOrganizationsQuery getOrganizationsQuery,
-            ICreateOrganizationCommand createOrganizationCommand,
-            IUpdateOrganizationCommand updateOrganizationCommand,
-            IGetOrganizationByIdQuery getOrganizationByIdQuery,
-            IMappingEngine mappingEngine)
+        public OrganizationsController(IOrganizationService organizationService, IMappingEngine mappingEngine)
             : base(mappingEngine)
         {
-            _getOrganizationsQuery = getOrganizationsQuery;
-            _createOrganizationCommand = createOrganizationCommand;
-            _updateOrganizationCommand = updateOrganizationCommand;
-            _getOrganizationByIdQuery = getOrganizationByIdQuery;
+            _organizationService = organizationService;
         }
 
         [HttpGet]
+        [Authorize(Roles = Role.AnyAdministrator)]
         public IEnumerable<OrganizationViewModel> Index()
         {
-            var organizations = _getOrganizationsQuery.Execute();
+            var organizations = _organizationService.GetAll();
             return MappingEngine.Map<IEnumerable<Organization>, IEnumerable<OrganizationViewModel>>(organizations);
         }
 
         [HttpPost]
         [Authorize(Roles = Role.ColorSoftAdministrator)]
-        public void Create(AddOrganizationViewModel model)
+        [ModelRequired]
+        public HttpResponseMessage Create(AddOrganizationViewModel model)
         {
-            _createOrganizationCommand.Execute(MappingEngine.Map<AddOrganizationViewModel, Organization>(model));
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    var org = MappingEngine.Map<AddOrganizationViewModel, Organization>(model);
+                    _organizationService.Create(org);
+                    return CreatedResponse(org.Id);
+                }
+                catch (Exception ex)
+                {
+                    return ExceptionErrorResponse(ex);
+                }
+            }
+
+            return ModelStateErrorResponse();
         }
 
         [HttpPut]
-        public void Update(OrganizationViewModel model)
+        [Authorize(Roles = Role.ColorSoftAdministrator)]
+        [ModelRequired]
+        public HttpResponseMessage Update(OrganizationViewModel model)
         {
-            if (model == null)
+            if(ModelState.IsValid)
             {
-                throw new ArgumentNullException("model");
+                try
+                {
+                    var organization = _organizationService.GetById(model.Id);
+                    MappingEngine.Map(model, organization);
+                    _organizationService.Update(organization);
+                    return UpdatedResponse();
+                }
+                catch (Exception ex)
+                {
+                    return ExceptionErrorResponse(ex);
+                }
             }
 
-            var organization = _getOrganizationByIdQuery.Execute(model.Id);
-            MappingEngine.Map(model, organization);
-            _updateOrganizationCommand.Execute(organization);
-        }
-
-        [HttpDelete]
-        [Authorize(Roles = Role.ColorSoftAdministrator)]
-        public void Delete(Guid id)
-        {
-            //TODO - Implement this - it must also delete all related data
+            return ModelStateErrorResponse();
         }
 
         [HttpPost]
         [Authorize(Roles = Role.ColorSoftAdministrator)]
-        public void DeleteAll(Guid[] ids)
+        [ModelRequired(ModelParameterName = "ids")]
+        public HttpResponseMessage Delete(Guid[] ids)
         {
-            //TODO - Implement this - it must also delete all related data
+            try
+            {
+                _organizationService.Delete(ids);
+                return DeletedResponse();
+            }
+            catch (Exception ex)
+            {
+                return ExceptionErrorResponse(ex);
+            }
         }
     }
 }

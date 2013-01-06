@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using ColorSoft.Web.Validation.Validators;
-using FluentValidation.Attributes;
+using System.Web.Mvc;
+using ColorSoft.Web.Validation;
 
-namespace ColorSoft.Web.Models.Registration
+namespace ColorSoft.Web.Models.Api.Registration
 {
-    [Validator(typeof(RegistrationViewModelValidator))]
     public class RegistrationViewModel
     {
         [Display(Name = "Your Organization")]
@@ -21,6 +20,7 @@ namespace ColorSoft.Web.Models.Registration
 
         [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress)]
+        [EmailValidation]
         public string EmailAddress { get; set; }
 
         [Display(Name = "Password")]
@@ -29,6 +29,7 @@ namespace ColorSoft.Web.Models.Registration
 
         [Display(Name = "Password Confirmation")]
         [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Password confirmation must match password")]
         public string PasswordConfirmation { get; set; }
     }
 }

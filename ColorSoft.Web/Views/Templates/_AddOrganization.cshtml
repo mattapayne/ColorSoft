@@ -8,10 +8,12 @@
         </h3>
     </div>
     <div class="modal-body">
-        <div id="debug">
-            {{ organization }}
+        <div ng-show="errorsVisible()" class="alert alert-error">
+            <ul>
+                <li ng-repeat="error in errors">{{ error }}</li>
+            </ul>
         </div>
-        <form novalidate name="addUserForm" class="addUserForm">
+        <form novalidate name="addOrganizationForm" class="addOrganizationForm">
             <div class="alert alert-error" ng-show="">
             </div>
             <div class="control-group">

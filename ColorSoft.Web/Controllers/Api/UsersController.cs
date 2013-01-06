@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using ColorSoft.Web.Data.Models;
+using ColorSoft.Web.Filters;
 using ColorSoft.Web.Models.Api.Users;
-using ColorSoft.Web.Models.Users;
 using ColorSoft.Web.Services.Users;
 
 namespace ColorSoft.Web.Controllers.Api
@@ -30,37 +30,61 @@ namespace ColorSoft.Web.Controllers.Api
         }
 
         [HttpPost]
-        public void Create(AddUserViewModel model)
+        [ModelRequired]
+        public HttpResponseMessage Create(AddUserViewModel model)
         {
-            var user = MappingEngine.Map<AddUserViewModel, User>(model);
-            _userService.Create(user);
+            if (ModelState.IsValid)
+            {
+                var user = MappingEngine.Map<AddUserViewModel, User>(model);
+
+                try
+                {
+                    _userService.Create(user);
+                    return CreatedResponse(user.Id);
+                }
+                catch (Exception ex)
+                {
+                    return ExceptionErrorResponse(ex);
+                }
+            }
+
+            return ModelStateErrorResponse();
         }
 
         [HttpPut]
-        public void Update(UserViewModel model)
+        [ModelRequired]
+        public HttpResponseMessage Update(UserViewModel model)
         {
-            if(model == null || !model.Id.HasValue)
+            if(ModelState.IsValid)
             {
-                throw  new ArgumentNullException("model");
+                try
+                {
+                    var user = _userService.GetById(model.Id);
+                    MappingEngine.Map(model, user);
+                    _userService.Update(user);
+                    return UpdatedResponse();
+                }
+                catch (Exception ex)
+                {
+                    return ExceptionErrorResponse(ex);
+                }
             }
 
-            var user = _userService.GetById(model.Id.Value);
-            MappingEngine.Map(model, user);
-            _userService.Update(user);
-        }
-
-        [HttpDelete]
-        public void Delete(Guid id)
-        {
-            _userService.Delete(id);
+            return ModelStateErrorResponse();
         }
 
         [HttpPost]
-        public void DeleteAll(Guid[] ids)
+        [ModelRequired(ModelParameterName = "ids")]
+        public HttpResponseMessage Delete(Guid[] ids)
         {
-            if (ids != null)
+            try
             {
                 _userService.Delete(ids);
+                return DeletedResponse();
+            }
+            catch (Exception ex)
+            {
+                return ExceptionErrorResponse(ex);
             }
         }
     }

@@ -1,46 +1,26 @@
-﻿angular.module('users', ['ngResource']).
-    factory('UserService', function ($resource, $http) {
-        var res = $resource('api/users/:action/:id', {}, {
-            query: { method: 'GET', isArray: true, params: { action: "Index"} },
-            save: { method: 'POST', params: { action: 'create'} },
-            update: { method: 'PUT', params: { action: 'update'} },
-            remove: { method: 'DELETE', params: { action: 'delete', id: '@Id'} },
-            editing: false,
-            selected: false
-        });
-
-        //since this is not a resourceful operation, we'll fallback on $http
-        res.removeAll = function (ids) {
-            return $http.post('api/users/deleteAll', ids);
+﻿angular.module('colorSoft').
+    service("UserService", ['$http', 'ApplicationUrls', 'User', function ($http, ApplicationUrls, User) {
+        this.query = function () {
+            return $http.get(ApplicationUrls.ListUsersUrl).then(function (response) {
+                return _.map(response.data, function (r) {
+                    return new User(r);
+                });
+            });
         };
 
-        res.create = function(args) {
-            return new res(args);
+        this.save = function (user) {
+            return $http.post(ApplicationUrls.CreateUserUrl, user.asJson());
         };
 
-        res.prototype.isSelected = function () {
-            return this.selected;
+        this.update = function (user) {
+            return $http.put(ApplicationUrls.UpdateUserUrl, user.asJson());
         };
 
-        res.prototype.setSelected = function (selected) {
-            this.selected = selected;
+        this.remove = function (ids) {
+            if (!angular.isArray(ids)) {
+                ids = [ids];
+            }
+            return $http.post(ApplicationUrls.DeleteUsersUrl, angular.toJson(ids));
         };
-
-        res.prototype.inEditMode = function () {
-            return this.editing;
-        };
-
-        res.prototype.inViewMode = function () {
-            return !this.editing;
-        };
-
-        res.prototype.setEditing = function (editing) {
-            this.editing = editing;
-        };
-
-        res.prototype.FullName = function () {
-            return this.FirstName + " " + this.LastName;
-        };
-
-        return res;
-    });
+        
+    } ]);

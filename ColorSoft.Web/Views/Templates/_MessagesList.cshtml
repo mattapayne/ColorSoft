@@ -57,21 +57,5 @@
             </tr>
         </tbody>
     </table>
-    <div ui-modal id="deleteDialog" class="fade" tabindex="-1" ng-model="deleteDialogVisible"
-        ng-controller="DeleteMessageCtrl">
-        <div class="modal-header">
-            <button type="button" class="close" ng-click="closeDeleteDialog()" aria-hidden="true">
-                &times;</button>
-            <h3>
-                Confirm Delete
-            </h3>
-        </div>
-        <div class="modal-body">
-            {{ deleteMessagesText() }}
-        </div>
-        <div class="modal-footer">
-            <a ng-click="closeDeleteDialog()" class="btn">No</a> <a ng-click="deleteMessages()"
-                class="btn btn-primary">Yes</a>
-        </div>
-    </div>
+    @Html.Partial(MVC.Templates.Views._DeleteMessage)
 </div>

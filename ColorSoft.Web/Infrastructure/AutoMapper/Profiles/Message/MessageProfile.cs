@@ -8,7 +8,7 @@ namespace ColorSoft.Web.Infrastructure.AutoMapper.Profiles.Message
     {
         protected override void Configure()
         {
-            CreateMap<MessageViewModel, Data.Models.Message>().
+            CreateMap<AddMessageViewModel, Data.Models.Message>().
                 ForMember(d => d.MessageText, opt => opt.MapFrom(s => s.Message)).
                 ForMember(d => d.From, opt => opt.MapFrom(s => s.Email)).
                 DoNotSet(d => d.CreatedAt, d => d.Id);

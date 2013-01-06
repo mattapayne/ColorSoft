@@ -8,6 +8,11 @@
         </h3>
     </div>
     <div class="modal-body">
+        <div ng-show="errorsVisible()" class="alert alert-error">
+            <ul>
+                <li ng-repeat="error in errors">{{ error }}</li>
+            </ul>
+        </div>
         Are you sure you want to delete {{ selectedUserNames() }}?
     </div>
     <div class="modal-footer">

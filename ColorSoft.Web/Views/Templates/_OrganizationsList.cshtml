@@ -35,7 +35,7 @@
                     {{ org.Name }}
                 </td>
                 <td ui-if="org.inEditMode()">
-                    <input type="text" class="input-small" ng-model="org.Name" />
+                    <input type="text" class="input-large" ng-model="org.Name" />
                 </td>
                 <td ui-if="org.inViewMode()">
                     <a ng-click="editOrganization(org)">Edit</a>&nbsp; <a ng-click="showDeleteDialog(org)">Delete</a>

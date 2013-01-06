@@ -20,11 +20,11 @@ namespace ColorSoft.Web.Controllers.Api
         }
 
         [HttpPost]
-        public HttpResponseMessage Create(MessageViewModel model)
+        public HttpResponseMessage Create(AddMessageViewModel model)
         {
             if (model != null)
             {
-                _createMessageCommand.Execute(_mappingEngine.Map<MessageViewModel, Message>(model));
+                _createMessageCommand.Execute(_mappingEngine.Map<AddMessageViewModel, Message>(model));
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
 
