@@ -171,6 +171,7 @@
     <Compile Include="Controllers\Api\DashboardPermissionsController.cs" />
     <Compile Include="Controllers\Api\MessagesController.cs" />
     <Compile Include="Controllers\Api\OrganizationsController.cs" />
+    <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Api\RegistrationController.cs" />
     <Compile Include="Controllers\TemplatesController.cs" />
@@ -188,6 +189,9 @@
     <Compile Include="HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Queries\Users\GetUserByEmailQuery.cs" />
+    <Compile Include="Queries\Users\IGetUserByEmailQuery.cs" />
+    <Compile Include="Validation\ApplicationValidationException.cs" />
     <Compile Include="Infrastructure\Authentication\IApplicationUser.cs" />
     <Compile Include="Infrastructure\AutoMapper\Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardNavigation\DashboardNavigationSectionItemProfile.cs" />
@@ -195,6 +199,7 @@
     <Compile Include="Infrastructure\AutoMapper\Profiles\DashboardPermissions\DashboardPermissionProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\Message\MessageProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Profiles\Organizations\OrganizationProfile.cs" />
+    <Compile Include="Infrastructure\AutoMapper\Profiles\Roles\RoleProfile.cs" />
     <Compile Include="Infrastructure\AutoMapper\Resolvers\DashboardNavigation\DashboardNavigationSectionItemViewModelResolver.cs" />
     <Compile Include="Infrastructure\CustomAuthenticationModule.cs" />
     <Compile Include="Data\Models\User.cs" />
@@ -218,6 +223,7 @@
     <Compile Include="Models\Api\Messages\AddMessageViewModel.cs" />
     <Compile Include="Models\Api\Organizations\AddOrganizationViewModel.cs" />
     <Compile Include="Models\Api\Organizations\OrganizationViewModel.cs" />
+    <Compile Include="Models\Api\Roles\RoleViewModel.cs" />
     <Compile Include="Models\Api\Users\UserViewModel.cs" />
     <Compile Include="AuthenticationController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
@@ -254,7 +260,9 @@
     <Compile Include="Queries\Organizations\GetOrganizationsQuery.cs" />
     <Compile Include="Queries\Organizations\IGetOrganizationByIdQuery.cs" />
     <Compile Include="Queries\Organizations\IGetOrganizationsQuery.cs" />
+    <Compile Include="Queries\Roles\GetRolesLimitedByCurrentUserQuery.cs" />
     <Compile Include="Queries\Roles\GetRolesQuery.cs" />
+    <Compile Include="Queries\Roles\IGetRolesLimitedByCurrentUserQuery.cs" />
     <Compile Include="Queries\Roles\IGetRolesQuery.cs" />
     <Compile Include="Queries\Users\GetAllNonDeletedUsersQuery.cs" />
     <Compile Include="Queries\Users\GetUserByIdQuery.cs" />
@@ -292,6 +300,7 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Validation\EmailValidationAttribute.cs" />
+    <Compile Include="Validation\ValidationError.cs" />
     <Compile Include="Validation\Validators\LoginViewModelValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +348,7 @@
     <Content Include="Scripts\applications\colorsoft\services\dashboard_service.js" />
     <Content Include="Scripts\applications\colorsoft\services\messages_service.js" />
     <Content Include="Scripts\applications\colorsoft\services\organizations_service.js" />
+    <Content Include="Scripts\applications\colorsoft\services\roles_service.js" />
     <Content Include="Scripts\applications\colorsoft\services\users_service.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.js" />
     <Content Include="Scripts\lib\angular-ui\angular-ui-ieshiv.min.js" />

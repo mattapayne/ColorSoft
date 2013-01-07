@@ -15,6 +15,7 @@ namespace ColorSoft.Web.Data.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public Guid? OrganizationId { get; set; }
+        public Guid? RoleId { get; set; }
         public Organization Organization { get; set; }
 
         public IEnumerable<string> Roles { get; set; }

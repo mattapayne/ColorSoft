@@ -39,7 +39,7 @@ namespace ColorSoft.Web.Controllers.Api
                 {
                     var org = MappingEngine.Map<AddOrganizationViewModel, Organization>(model);
                     _organizationService.Create(org);
-                    return CreatedResponse(org.Id);
+                    return CreatedResponse(MappingEngine.Map<Organization, OrganizationViewModel>(org));
                 }
                 catch (Exception ex)
                 {

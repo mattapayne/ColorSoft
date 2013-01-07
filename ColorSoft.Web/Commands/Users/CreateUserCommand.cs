@@ -19,10 +19,9 @@ namespace ColorSoft.Web.Commands.Users
             using (dynamic trans = _connection.Db().BeginTransaction())
             {
                 var defaultRole = trans.Roles.FindAllByName(Role.OrganizationUser).FirstOrDefault();
-
                 trans.Users.Insert(args);
-                trans.UsersRoles.Insert(UserId: args.Id, RoleId: defaultRole.Id);
-
+                trans.UsersRoles.Insert(UserId: args.Id,
+                                        RoleId: !args.RoleId.HasValue ? defaultRole.Id : args.RoleId.Value);
                 trans.Commit();
             }
         }

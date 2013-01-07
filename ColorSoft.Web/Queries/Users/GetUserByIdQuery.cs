@@ -17,7 +17,7 @@ namespace ColorSoft.Web.Queries.Users
 
         public User Execute(Guid id)
         {
-            return _connection.Db().Users.FindAllById(id).FirstOrDefault();
+            return _connection.Db().Users.FindAllById(id).WithOrganization().FirstOrDefault();
         }
 
         #endregion

@@ -30,9 +30,10 @@ namespace ColorSoft.Web.Models.Api.Users
 
         [Display(Name = "Password Confirmation")]
         [Required(ErrorMessage = "Password confirmation is required.")]
-        [Compare("Password", ErrorMessage = "Password confirmation must match password")]
+        [Compare("Password", ErrorMessage = "Password confirmation must match password.")]
         public string PasswordConfirmation { get; set; }
 
         public Guid? OrganizationId { get; set; }
+        public Guid? RoleId { get; set; }
     }
 }

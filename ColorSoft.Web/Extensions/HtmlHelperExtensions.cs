@@ -55,7 +55,7 @@ namespace ColorSoft.Web.Extensions
                 ListUsersUrl = url.Action("Index", "Api/Users"),
                 CreateUserUrl = url.Action("Create", "Api/Users"),
                 UpdateUserUrl = url.Action("Update", "Api/Users"),
-                DeleteUsersUrl = url.Action("Delete", "Api/Delete"),
+                DeleteUsersUrl = url.Action("Delete", "Api/Users"),
                 ListDashboardPermissionsUrl = url.Action("Index", "Api/DashboardPermissions"),
                 ListMessagesUrl = url.Action("Index", "Api/Messages"),
                 CreateMessageUrl = url.Action("Create", "Api/Messages"),
@@ -63,7 +63,8 @@ namespace ColorSoft.Web.Extensions
                 ListOrganizationsUrl = url.Action("Index", "Api/Organizations"),
                 CreateOrganizationUrl = url.Action("Create", "Api/Organizations"),
                 UpdateOrganizationUrl = url.Action("Update", "Api/Organizations"),
-                DeleteOrganizationsUrl = url.Action("Delete", "Api/Organizations")
+                DeleteOrganizationsUrl = url.Action("Delete", "Api/Organizations"),
+                ListRolesUrl = url.Action("Index", "Api/Roles")
             };
 
             var script = @"<script type='text/javascript'>

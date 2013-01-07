@@ -33,9 +33,9 @@ namespace ColorSoft.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        protected HttpResponseMessage CreatedResponse(Guid id)
+        protected HttpResponseMessage CreatedResponse(object model)
         {
-            return Request.CreateResponse(HttpStatusCode.Created, new { NewID = id });
+            return Request.CreateResponse(HttpStatusCode.Created, model);
         }
 
         protected HttpResponseMessage ExceptionErrorResponse(Exception e)
@@ -53,6 +53,16 @@ namespace ColorSoft.Web.Controllers.Api
                         new ObjectContent(typeof(IEnumerable<string>), modelStateErrors,
                                           new JsonMediaTypeFormatter())
                 };
+        }
+
+        protected void AddModelStateErrors(ApplicationValidationException exception)
+        {
+            if (exception == null)
+            {
+                return;
+            }
+
+            exception.Errors.ToList().ForEach(e => ModelState.AddModelError(e.PropertyName, e.ErrorMessage));
         }
 
         protected IEnumerable<string> GetSimpleModelStateErrors()

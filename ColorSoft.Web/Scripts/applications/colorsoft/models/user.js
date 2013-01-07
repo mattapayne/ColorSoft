@@ -1,6 +1,6 @@
 ﻿angular.module("colorSoft").factory("User", ['ModelBase', function (ModelBase) {
     return function (args) {
-        
+
         args = args || {
             Id: '',
             FirstName: '',
@@ -10,9 +10,10 @@
             UserName: '',
             OrganizationName: '',
             OrganizationId: '',
-            CreatedAt: ''
+            CreatedAt: '',
+            RoleId: ''
         };
 
         angular.extend(this, args, new ModelBase());
     };
-}])
+} ])

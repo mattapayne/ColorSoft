@@ -5,8 +5,10 @@ using System.Web.Http;
 using AutoMapper;
 using ColorSoft.Web.Data.Models;
 using ColorSoft.Web.Filters;
+using ColorSoft.Web.Infrastructure;
 using ColorSoft.Web.Models.Api.Users;
 using ColorSoft.Web.Services.Users;
+using ColorSoft.Web.Validation;
 
 namespace ColorSoft.Web.Controllers.Api
 {
@@ -40,7 +42,12 @@ namespace ColorSoft.Web.Controllers.Api
                 try
                 {
                     _userService.Create(user);
-                    return CreatedResponse(user.Id);
+                    user = _userService.GetById(user.Id);
+                    return CreatedResponse(MappingEngine.Map<User, UserViewModel>(user));
+                }
+                catch (ApplicationValidationException ae)
+                {
+                    AddModelStateErrors(ae);
                 }
                 catch (Exception ex)
                 {
@@ -63,6 +70,10 @@ namespace ColorSoft.Web.Controllers.Api
                     MappingEngine.Map(model, user);
                     _userService.Update(user);
                     return UpdatedResponse();
+                }
+                catch (ApplicationValidationException ae)
+                {
+                    AddModelStateErrors(ae);
                 }
                 catch (Exception ex)
                 {

@@ -10,7 +10,7 @@
     $scope.selectedUserNames = function() {
         return _.map($scope.selectedUsers,
             function(user) {
-                return user.FullName();
+                return user.FullName;
             }).join(" and ");
     };
 
@@ -23,7 +23,7 @@
         if ($scope.selectedUsers.length > 0) {
             var users = $scope.selectedUsers;
             var ids = _.pluck(users, "Id");
-            UserService.removeAll(ids).success(function () {
+            UserService.remove(ids).success(function () {
                 $scope.$emit("users:deleted", { users: users });
                 $scope.selectedUsers = [];
                 $scope.closeDeleteDialog();

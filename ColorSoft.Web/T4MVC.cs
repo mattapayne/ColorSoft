@@ -484,6 +484,8 @@ namespace Links {
                                   
                     public static readonly string organizations_service_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/organizations_service.min.js") ? Url("organizations_service.min.js") : Url("organizations_service.js");
                                   
+                    public static readonly string roles_service_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/roles_service.min.js") ? Url("roles_service.min.js") : Url("roles_service.js");
+                                  
                     public static readonly string users_service_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/users_service.min.js") ? Url("users_service.min.js") : Url("users_service.js");
                                   
                 }

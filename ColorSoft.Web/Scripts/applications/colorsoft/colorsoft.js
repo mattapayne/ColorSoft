@@ -37,7 +37,7 @@
 
             $httpProvider.responseInterceptors.push(interceptor);
         } ]).
-    run(['$rootScope', '$http', 'ApplicationUrls', function ($rootScope, $http, ApplicationUrls) {
+    run(['$rootScope', '$http', 'ApplicationUrls', '$location', function ($rootScope, $http, ApplicationUrls, $location) {
 
         $rootScope.requests401 = [];
         $rootScope.loggedIn = false;
@@ -65,14 +65,6 @@
             }
         });
 
-        $rootScope.$on("$viewContentLoaded", function () {
-            //TODO - hide loading indicator
-        });
-
-        $rootScope.$on("$includeContentLoaded", function () {
-            //TODO - hide loading indicator
-        });
-
         $rootScope.$on("login:required", function () {
             $rootScope.loginDialogVisible = true;
         });
@@ -96,7 +88,7 @@
             $http.post(ApplicationUrls.LogoutUrl).success(function () {
                 $rootScope.loggedIn = false;
                 $rootScope.userName = "";
-                $rootScope.path("/");
+                $location.path("/");
                 ping();
             });
         });

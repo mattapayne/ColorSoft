@@ -31,10 +31,6 @@
     font-size: 20px;
 }
 
-.addUser {
-    width: 400px;
-}
-
 .addUser .modal-body {
     max-height: 500px;
 }
@@ -49,4 +45,8 @@
 
 .accordion-toggle {
     color: #08C;
+}
+
+.addUserForm .select2-container {
+    width: 220px;
 }

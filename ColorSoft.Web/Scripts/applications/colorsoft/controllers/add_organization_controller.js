@@ -24,7 +24,7 @@
         $scope.createOrganization = function () {
             var org = $scope.organization;
             OrganizationService.save(org).success(function (response) {
-                org.Id = response.NewID;
+                org = new Organization(response);
                 $scope.closeAddDialog();
                 $scope.$emit("organizations:created", { organization: org });
             }).error(function (response) {
